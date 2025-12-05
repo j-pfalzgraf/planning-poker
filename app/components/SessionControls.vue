@@ -5,6 +5,8 @@
  * Control elements for the session host.
  */
 
+const { t } = useI18n()
+
 /**
  * Props Definition
  */
@@ -65,7 +67,7 @@ function handleStartVoting(): void {
         <Icon name="heroicons:adjustments-horizontal" class="w-5 h-5" />
       </div>
       <h3 class="text-lg font-bold text-secondary-900">
-        Controls
+        {{ t('controls.startVoting') }}
       </h3>
     </div>
 
@@ -73,27 +75,27 @@ function handleStartVoting(): void {
     <div v-if="(props.status === 'waiting' || props.status === 'revealed') && !props.hasStoryQueue" class="space-y-3">
       <div>
         <label for="story-input" class="block text-sm font-medium text-secondary-700 mb-1">
-          Story / Task
+          {{ t('controls.storyTitle') }}
         </label>
         <input
           id="story-input"
           v-model="storyInput"
           type="text"
           class="input"
-          placeholder="e.g. User Story #123"
+          :placeholder="t('controls.storyTitlePlaceholder')"
           @keyup.enter="handleStartVoting"
         >
       </div>
 
       <div>
         <label for="story-desc" class="block text-sm font-medium text-secondary-700 mb-1">
-          Description (Markdown)
+          {{ t('controls.description') }}
         </label>
         <textarea
           id="story-desc"
           v-model="descriptionInput"
           class="input min-h-[100px] resize-y"
-          placeholder="Story details..."
+          :placeholder="t('controls.descriptionPlaceholder')"
         />
       </div>
 
@@ -104,7 +106,7 @@ function handleStartVoting(): void {
         @click="handleStartVoting"
       >
         <Icon name="heroicons:play" class="w-5 h-5 mr-2" />
-        Start New Round
+        {{ t('controls.startVoting') }}
       </button>
     </div>
 
@@ -112,14 +114,14 @@ function handleStartVoting(): void {
     <div v-else-if="props.status === 'waiting' && props.hasStoryQueue" class="text-center py-4">
       <Icon name="heroicons:queue-list" class="w-8 h-8 text-secondary-300 mx-auto mb-2" />
       <p class="text-sm text-secondary-500">
-        Use the Story Queue to start the next round.
+        {{ t('storyQueue.title') }}
       </p>
     </div>
 
     <!-- Active voting -->
     <div v-else-if="props.status === 'voting'" class="space-y-3">
       <div class="p-3 bg-primary-50 rounded-lg">
-        <div class="text-xs text-primary-600 mb-1">Current Story</div>
+        <div class="text-xs text-primary-600 mb-1">{{ t('session.currentStory') }}</div>
         <div class="font-medium text-primary-800">{{ props.currentStory }}</div>
       </div>
 
@@ -130,8 +132,8 @@ function handleStartVoting(): void {
         @click="emit('reveal')"
       >
         <Icon name="heroicons:eye" class="w-5 h-5 mr-2" />
-        Reveal Cards
-        <span v-if="props.allVotesIn" class="ml-2 text-xs">(Everyone has voted!)</span>
+        {{ t('controls.revealCards') }}
+        <span v-if="props.allVotesIn" class="ml-2 text-xs">({{ t('controls.allVotesIn') }})</span>
       </button>
 
       <button
@@ -140,14 +142,14 @@ function handleStartVoting(): void {
         @click="emit('reset')"
       >
         <Icon name="heroicons:arrow-path" class="w-5 h-5 mr-2" />
-        Reset
+        {{ t('controls.resetVoting') }}
       </button>
     </div>
 
     <!-- Results shown (with story queue) -->
     <div v-else-if="props.status === 'revealed' && props.hasStoryQueue" class="space-y-3">
       <div class="p-3 bg-green-50 rounded-lg border border-green-200">
-        <div class="text-xs text-green-600 mb-1">Voting completed</div>
+        <div class="text-xs text-green-600 mb-1">{{ t('results.title') }}</div>
         <div class="font-medium text-green-800">{{ props.currentStory }}</div>
       </div>
 
@@ -157,7 +159,7 @@ function handleStartVoting(): void {
         @click="emit('nextStory')"
       >
         <Icon name="heroicons:forward" class="w-5 h-5 mr-2" />
-        Next Story
+        {{ t('controls.nextStory') }}
       </button>
 
       <button
@@ -166,7 +168,7 @@ function handleStartVoting(): void {
         @click="emit('reset')"
       >
         <Icon name="heroicons:arrow-path" class="w-5 h-5 mr-2" />
-        Vote Again
+        {{ t('controls.resetVoting') }}
       </button>
     </div>
   </div>

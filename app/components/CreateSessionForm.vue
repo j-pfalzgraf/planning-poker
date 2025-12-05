@@ -5,6 +5,8 @@
  * Form for creating a new Planning Poker session.
  */
 
+const { t } = useI18n()
+
 /**
  * Events Definition
  */
@@ -40,34 +42,34 @@ function handleSubmit(): void {
 <template>
   <form class="card-container max-w-md mx-auto" @submit.prevent="handleSubmit">
     <h2 class="text-xl font-bold text-secondary-800 mb-6 text-center">
-      Create New Session
+      {{ t('session.create.title') }}
     </h2>
 
     <div class="space-y-4">
       <div>
         <label for="session-name" class="block text-sm font-medium text-secondary-700 mb-1">
-          Session Name
+          {{ t('session.create.sessionName') }}
         </label>
         <input
           id="session-name"
           v-model="sessionName"
           type="text"
           class="input"
-          placeholder="e.g. Sprint 42 Planning"
+          :placeholder="t('session.create.sessionNamePlaceholder')"
           required
         >
       </div>
 
       <div>
         <label for="participant-name" class="block text-sm font-medium text-secondary-700 mb-1">
-          Your Name
+          {{ t('session.create.yourName') }}
         </label>
         <input
           id="participant-name"
           v-model="participantName"
           type="text"
           class="input"
-          placeholder="e.g. John Doe"
+          :placeholder="t('session.create.yourNamePlaceholder')"
           required
         >
       </div>
@@ -78,7 +80,7 @@ function handleSubmit(): void {
         :disabled="!isValid"
       >
         <Icon name="heroicons:plus" class="w-5 h-5 mr-2" />
-        Create Session
+        {{ t('session.create.button') }}
       </button>
     </div>
   </form>

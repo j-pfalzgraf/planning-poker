@@ -7,6 +7,8 @@
 
 import type { IParticipant } from '~/types';
 
+const { t } = useI18n()
+
 /**
  * Props Definition
  */
@@ -42,7 +44,7 @@ const sortedParticipants = computed(() => {
  */
 function getStatusIcon(participant: IParticipant): string {
   if (participant.isObserver) return 'heroicons:eye'
-  if (participant.selectedValue === null) return 'heroicons:ellipsis-horizontal'
+  if (participant.selectedValue === null) return 'heroicons:minus'
   if (props.revealed) return '' // Value is shown directly
   return 'heroicons:check'
 }
@@ -73,7 +75,7 @@ function getVoteBadgeClasses(participant: IParticipant): string[] {
   <div class="participant-list bg-white rounded-xl shadow-sm border border-secondary-200 p-4">
     <div class="flex items-center justify-between mb-4">
       <h3 class="text-sm font-semibold text-secondary-700 uppercase tracking-wider">
-        Participants
+        {{ t('participants.title') }}
       </h3>
       <span class="bg-secondary-100 text-secondary-600 text-xs font-medium px-2.5 py-0.5 rounded-full">
         {{ participants.length }}
@@ -101,7 +103,7 @@ function getVoteBadgeClasses(participant: IParticipant): string[] {
               {{ participant.name }}
             </span>
             <span v-if="participant.id === currentUserId" class="text-[10px] text-primary-600 font-medium">
-              You
+              {{ t('participants.you') }}
             </span>
           </div>
         </div>

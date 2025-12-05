@@ -1,0 +1,137 @@
+{
+  "app": {
+    "name": "Planning Poker",
+    "tagline": "Agile Schätzungen leicht gemacht",
+    "footer": "Entwickelt mit {heart} und Nuxt 3"
+  },
+  "connection": {
+    "connected": "Verbunden",
+    "connecting": "Verbinde...",
+    "disconnected": "Offline",
+    "error": "Fehler"
+  },
+  "home": {
+    "welcome": "Willkommen bei Planning Poker",
+    "subtitle": "Starte eine neue Session oder tritt einer bestehenden bei.",
+    "newSession": "Neue Session",
+    "join": "Beitreten"
+  },
+  "session": {
+    "create": {
+      "title": "Neue Session erstellen",
+      "sessionName": "Session-Name",
+      "sessionNamePlaceholder": "z.B. Sprint 42 Planning",
+      "yourName": "Dein Name",
+      "yourNamePlaceholder": "z.B. Max",
+      "button": "Session erstellen"
+    },
+    "join": {
+      "title": "Session beitreten",
+      "joinCode": "Beitrittscode",
+      "joinCodePlaceholder": "z.B. ABC123",
+      "yourName": "Dein Name",
+      "yourNamePlaceholder": "z.B. Max",
+      "asObserver": "Als Beobachter beitreten",
+      "observerHint": "Beobachter können zusehen, aber nicht abstimmen",
+      "button": "Beitreten",
+      "noCode": "Keinen Code?",
+      "createOwn": "Erstelle deine eigene Session"
+    },
+    "info": {
+      "sessionLabel": "Session:",
+      "shareCode": "Code teilen",
+      "copiedToClipboard": "Kopiert!",
+      "participantsOnline": "{count} Teilnehmer online",
+      "leave": "Verlassen"
+    },
+    "currentStory": "Aktuelle Story",
+    "showDetails": "Details anzeigen",
+    "waitingForHost": "Warte auf den Host, um die nächste Runde zu starten..."
+  },
+  "participants": {
+    "title": "Teilnehmer",
+    "you": "Du",
+    "host": "Host",
+    "observer": "Beobachter",
+    "voted": "Abgestimmt",
+    "notVoted": "Nicht abgestimmt"
+  },
+  "controls": {
+    "title": "Host-Steuerung",
+    "startVoting": "Abstimmung starten",
+    "storyTitle": "Story-Titel",
+    "storyTitlePlaceholder": "z.B. Als Benutzer möchte ich...",
+    "description": "Beschreibung",
+    "descriptionPlaceholder": "Beschreibung oder Akzeptanzkriterien hinzufügen...",
+    "revealCards": "Karten aufdecken",
+    "allVotesIn": "Alle Stimmen sind da!",
+    "votingInProgress": "Abstimmung läuft",
+    "votingComplete": "Abstimmung abgeschlossen",
+    "waitingForVotes": "Warte auf Stimmen... ({count}/{total})",
+    "resetVoting": "Abstimmung zurücksetzen",
+    "nextStory": "Nächste Story",
+    "hostOnly": "Nur der Host kann die Session steuern"
+  },
+  "cards": {
+    "chooseEstimate": "Wähle deine Schätzung",
+    "selectedCard": "Ausgewählte Karte: {value}"
+  },
+  "results": {
+    "title": "Ergebnisse",
+    "average": "Durchschnitt",
+    "median": "Median",
+    "votes": "Stimmen",
+    "consensus": "Konsens!",
+    "allAgreed": "Alle Teilnehmer haben sich auf {value} geeinigt",
+    "hiddenUntilReveal": "Die Ergebnisse werden angezeigt, sobald die Karten aufgedeckt sind."
+  },
+  "storyQueue": {
+    "title": "Story-Warteschlange",
+    "addStory": "Story hinzufügen",
+    "addToQueue": "Zur Warteschlange hinzufügen",
+    "storyTitlePlaceholder": "Story-Titel",
+    "descriptionPlaceholder": "Beschreibung (optional, Markdown unterstützt)",
+    "markdownSupported": "Markdown wird unterstützt",
+    "optional": "optional",
+    "remaining": "{count} Story verbleibend | {count} Storys verbleibend",
+    "estimated": "Geschätzt",
+    "notEstimated": "Nicht geschätzt",
+    "edit": "Bearbeiten",
+    "remove": "Entfernen",
+    "save": "Speichern",
+    "cancel": "Abbrechen"
+  },
+  "storyPreview": {
+    "close": "Schließen",
+    "noDescription": "Keine Beschreibung vorhanden."
+  },
+  "observer": {
+    "hint": "Du bist als Beobachter dabei und kannst nicht abstimmen."
+  },
+  "features": {
+    "teamEstimation": {
+      "title": "Team-Schätzungen",
+      "description": "Schätze gemeinsam mit deinem Team in Echtzeit."
+    },
+    "statistics": {
+      "title": "Statistiken",
+      "description": "Sieh Durchschnitt, Median und Verteilung der Votes."
+    },
+    "quickEasy": {
+      "title": "Schnell & Einfach",
+      "description": "Keine Registrierung nötig. Sofort loslegen!"
+    }
+  },
+  "errors": {
+    "fillAllFields": "Bitte fülle alle Felder aus.",
+    "invalidJoinCode": "Der Beitrittscode muss 6 Zeichen lang sein.",
+    "connectionFailed": "Verbindung zum Server fehlgeschlagen. Bitte versuche es erneut.",
+    "sessionNotFound": "Session nicht gefunden. Bitte prüfe den Beitrittscode.",
+    "notAuthorized": "Du bist nicht berechtigt, diese Aktion auszuführen.",
+    "voteFailed": "Stimme konnte nicht gespeichert werden.",
+    "invalidMessage": "Ungültige Nachricht"
+  },
+  "alert": {
+    "close": "Schließen"
+  }
+}

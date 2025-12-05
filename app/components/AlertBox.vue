@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * Alert Component
+ * AlertBox Component
  *
  * Reusable alert box for notifications.
  * Used for content integration.

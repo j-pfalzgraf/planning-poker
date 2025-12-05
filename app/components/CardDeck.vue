@@ -8,6 +8,8 @@
 import type { PokerValue } from '~/types'
 import { POKER_VALUES } from '~/types'
 
+const { t } = useI18n()
+
 /**
  * Props Definition
  */
@@ -45,7 +47,7 @@ function handleSelect(value: PokerValue): void {
 <template>
   <div class="card-deck">
     <h3 class="text-sm font-medium text-secondary-600 mb-3">
-      Choose your estimate
+      {{ t('cards.chooseEstimate') }}
     </h3>
 
     <div class="flex flex-wrap gap-2 justify-center">

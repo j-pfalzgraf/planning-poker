@@ -125,6 +125,27 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
+  /**
+   * Thin scrollbar styling
+   */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thumb-secondary-300::-webkit-scrollbar-thumb {
+    background-color: rgb(203 213 225);
+    border-radius: 9999px;
+  }
+
+  .scrollbar-track-secondary-100::-webkit-scrollbar-track {
+    background-color: rgb(241 245 249);
+    border-radius: 9999px;
+  }
 }
 
 /**

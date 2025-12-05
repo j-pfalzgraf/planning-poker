@@ -1,6 +1,6 @@
 <script setup lang="ts">
 /**
- * Counter Component
+ * DemoCounter Component
  *
  * Simple demo component for content integration.
  * Shows a counter with increment/decrement buttons.

@@ -8,6 +8,8 @@
 import DOMPurify from 'dompurify'
 import { marked } from 'marked'
 
+const { t } = useI18n()
+
 /**
  * Props Definition
  */
@@ -103,7 +105,7 @@ onUnmounted(() => {
             />
             <!-- eslint-enable vue/no-v-html -->
             <p v-else class="text-secondary-500 italic">
-              No description available.
+              {{ t('storyPreview.noDescription') }}
             </p>
           </div>
 
@@ -114,7 +116,7 @@ onUnmounted(() => {
               class="btn-primary w-full"
               @click="emit('close')"
             >
-              Close
+              {{ t('storyPreview.close') }}
             </button>
           </div>
         </div>

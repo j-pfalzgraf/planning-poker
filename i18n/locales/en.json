@@ -1,0 +1,137 @@
+{
+  "app": {
+    "name": "Planning Poker",
+    "tagline": "Agile Estimation Made Easy",
+    "footer": "Built with {heart} and Nuxt 3"
+  },
+  "connection": {
+    "connected": "Connected",
+    "connecting": "Connecting...",
+    "disconnected": "Offline",
+    "error": "Error"
+  },
+  "home": {
+    "welcome": "Welcome to Planning Poker",
+    "subtitle": "Start a new session or join an existing one.",
+    "newSession": "New Session",
+    "join": "Join"
+  },
+  "session": {
+    "create": {
+      "title": "Create New Session",
+      "sessionName": "Session Name",
+      "sessionNamePlaceholder": "e.g., Sprint 42 Planning",
+      "yourName": "Your Name",
+      "yourNamePlaceholder": "e.g., John",
+      "button": "Create Session"
+    },
+    "join": {
+      "title": "Join Session",
+      "joinCode": "Join Code",
+      "joinCodePlaceholder": "e.g., ABC123",
+      "yourName": "Your Name",
+      "yourNamePlaceholder": "e.g., John",
+      "asObserver": "Join as Observer",
+      "observerHint": "Observers can watch but cannot vote",
+      "button": "Join Session",
+      "noCode": "Don't have a code?",
+      "createOwn": "Create your own session"
+    },
+    "info": {
+      "sessionLabel": "Session:",
+      "shareCode": "Share Code",
+      "copiedToClipboard": "Copied!",
+      "participantsOnline": "{count} participant online | {count} participants online",
+      "leave": "Leave"
+    },
+    "currentStory": "Current Story",
+    "showDetails": "Show details",
+    "waitingForHost": "Waiting for the host to start the next round..."
+  },
+  "participants": {
+    "title": "Participants",
+    "you": "You",
+    "host": "Host",
+    "observer": "Observer",
+    "voted": "Voted",
+    "notVoted": "Not voted"
+  },
+  "controls": {
+    "title": "Host Controls",
+    "startVoting": "Start Voting",
+    "storyTitle": "Story Title",
+    "storyTitlePlaceholder": "e.g., As a user, I want to...",
+    "description": "Description",
+    "descriptionPlaceholder": "Add a description or acceptance criteria...",
+    "revealCards": "Reveal Cards",
+    "allVotesIn": "All votes are in!",
+    "votingInProgress": "Voting in progress",
+    "votingComplete": "Voting complete",
+    "waitingForVotes": "Waiting for votes... ({count}/{total})",
+    "resetVoting": "Reset Voting",
+    "nextStory": "Next Story",
+    "hostOnly": "Only the host can control the session"
+  },
+  "cards": {
+    "chooseEstimate": "Choose your estimate",
+    "selectedCard": "Selected card: {value}"
+  },
+  "results": {
+    "title": "Results",
+    "average": "Average",
+    "median": "Median",
+    "votes": "Votes",
+    "consensus": "Consensus!",
+    "allAgreed": "All participants agreed on {value}",
+    "hiddenUntilReveal": "Results will be shown once the cards are revealed."
+  },
+  "storyQueue": {
+    "title": "Story Queue",
+    "addStory": "Add Story",
+    "addToQueue": "Add to Queue",
+    "storyTitlePlaceholder": "Story title",
+    "descriptionPlaceholder": "Description (optional, Markdown supported)",
+    "markdownSupported": "Markdown is supported",
+    "optional": "optional",
+    "remaining": "{count} story remaining | {count} stories remaining",
+    "estimated": "Estimated",
+    "notEstimated": "Not estimated",
+    "edit": "Edit",
+    "remove": "Remove",
+    "save": "Save",
+    "cancel": "Cancel"
+  },
+  "storyPreview": {
+    "close": "Close",
+    "noDescription": "No description available."
+  },
+  "observer": {
+    "hint": "You are participating as an observer and cannot vote."
+  },
+  "features": {
+    "teamEstimation": {
+      "title": "Team Estimation",
+      "description": "Estimate together with your team in real-time."
+    },
+    "statistics": {
+      "title": "Statistics",
+      "description": "See average, median and vote distribution."
+    },
+    "quickEasy": {
+      "title": "Quick & Easy",
+      "description": "No registration required. Get started immediately!"
+    }
+  },
+  "errors": {
+    "fillAllFields": "Please fill in all fields.",
+    "invalidJoinCode": "The join code must be 6 characters long.",
+    "connectionFailed": "Could not connect to the server. Please try again.",
+    "sessionNotFound": "Session not found. Please check the join code.",
+    "notAuthorized": "You are not authorized to perform this action.",
+    "voteFailed": "Vote could not be saved.",
+    "invalidMessage": "Invalid message"
+  },
+  "alert": {
+    "close": "Close"
+  }
+}

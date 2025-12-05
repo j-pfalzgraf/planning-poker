@@ -8,6 +8,8 @@
 import { marked } from 'marked';
 import type { IParticipant, PokerValue } from '~/types';
 
+const { t } = useI18n()
+
 /**
  * Props Definition
  */
@@ -107,13 +109,13 @@ const hasConsensus = computed(() => {
         <Icon name="heroicons:chart-pie" class="w-5 h-5" />
       </div>
       <h3 class="text-lg font-bold text-secondary-900">
-        Result
+        {{ t('results.title') }}
       </h3>
     </div>
 
     <!-- Story Info -->
     <div v-if="story" class="mb-6 p-4 bg-white border border-secondary-200 rounded-xl shadow-sm">
-      <div class="text-xs text-secondary-500 mb-1">Voting for</div>
+      <div class="text-xs text-secondary-500 mb-1">{{ t('session.currentStory') }}</div>
       <h3 class="text-lg font-bold text-secondary-800 mb-2">{{ story }}</h3>
       <!-- eslint-disable-next-line vue/no-v-html -->
       <div
@@ -130,7 +132,7 @@ const hasConsensus = computed(() => {
     >
       <div class="text-3xl mb-2">🎉</div>
       <span class="text-green-800 font-bold text-lg">
-        Consensus reached!
+        {{ t('results.consensus') }}
       </span>
     </div>
 
@@ -140,21 +142,21 @@ const hasConsensus = computed(() => {
         <div class="text-2xl font-bold text-primary-600 mb-0.5">
           {{ average ?? '-' }}
         </div>
-        <div class="text-[10px] font-medium text-primary-500 uppercase tracking-wider">Average</div>
+        <div class="text-[10px] font-medium text-primary-500 uppercase tracking-wider">{{ t('results.average') }}</div>
       </div>
 
       <div class="text-center p-3 bg-accent-50 rounded-xl border border-accent-100">
         <div class="text-2xl font-bold text-accent-600 mb-0.5">
           {{ median ?? '-' }}
         </div>
-        <div class="text-[10px] font-medium text-accent-500 uppercase tracking-wider">Median</div>
+        <div class="text-[10px] font-medium text-accent-500 uppercase tracking-wider">{{ t('results.median') }}</div>
       </div>
 
       <div class="text-center p-3 bg-secondary-50 rounded-xl border border-secondary-100">
         <div class="text-2xl font-bold text-secondary-700 mb-0.5">
           {{ voters.length }}
         </div>
-        <div class="text-[10px] font-medium text-secondary-500 uppercase tracking-wider">Votes</div>
+        <div class="text-[10px] font-medium text-secondary-500 uppercase tracking-wider">{{ t('results.votes') }}</div>
       </div>
     </div>
 

@@ -7,6 +7,8 @@
 
 import { formatJoinCode, JOIN_CODE_LENGTH } from '~/types/poker';
 
+const { t } = useI18n()
+
 /**
  * Props Definition
  */
@@ -88,7 +90,7 @@ function handleCloseError(): void {
 <template>
   <form class="card-container max-w-md mx-auto" @submit.prevent="handleSubmit">
     <h2 class="text-xl font-bold text-secondary-800 mb-6 text-center">
-      Join Session
+      {{ t('session.join.title') }}
     </h2>
 
     <!-- Error message -->
@@ -109,32 +111,29 @@ function handleCloseError(): void {
     <div class="space-y-4">
       <div>
         <label for="join-code" class="block text-sm font-medium text-secondary-700 mb-1">
-          Join Code
+          {{ t('session.join.joinCode') }}
         </label>
         <input
           id="join-code"
           v-model="formattedJoinCode"
           type="text"
           class="input text-center text-2xl tracking-widest font-mono uppercase"
-          placeholder="ABC123"
+          :placeholder="t('session.join.joinCodePlaceholder')"
           maxlength="6"
           required
         >
-        <p class="mt-1 text-xs text-secondary-500">
-          6-character code from the session host
-        </p>
       </div>
 
       <div>
         <label for="participant-name-join" class="block text-sm font-medium text-secondary-700 mb-1">
-          Your Name
+          {{ t('session.join.yourName') }}
         </label>
         <input
           id="participant-name-join"
           v-model="participantName"
           type="text"
           class="input"
-          placeholder="e.g. John Doe"
+          :placeholder="t('session.join.yourNamePlaceholder')"
           required
         >
       </div>
@@ -147,7 +146,7 @@ function handleCloseError(): void {
           class="w-4 h-4 text-primary-600 rounded border-secondary-300 focus:ring-primary-500"
         >
         <label for="as-observer" class="text-sm text-secondary-700">
-          Join as observer (without voting rights)
+          {{ t('session.join.asObserver') }}
         </label>
       </div>
 
@@ -157,12 +156,12 @@ function handleCloseError(): void {
         :disabled="!isValid"
       >
         <Icon name="heroicons:arrow-right-on-rectangle" class="w-5 h-5 mr-2" />
-        Join
+        {{ t('session.join.button') }}
       </button>
 
       <div class="text-center pt-4 border-t border-secondary-200">
         <p class="text-sm text-secondary-500 mb-2">
-          No session yet?
+          {{ t('session.join.noCode') }}
         </p>
         <button
           type="button"
@@ -170,7 +169,7 @@ function handleCloseError(): void {
           @click="emit('switchToCreate')"
         >
           <Icon name="heroicons:plus" class="w-5 h-5 mr-2" />
-          Create New Session
+          {{ t('session.join.createOwn') }}
         </button>
       </div>
     </div>

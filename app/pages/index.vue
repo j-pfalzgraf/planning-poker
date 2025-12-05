@@ -8,6 +8,8 @@
 
 import { marked } from 'marked'
 
+const { t } = useI18n()
+
 /**
  * Session composable for state management
  */
@@ -76,8 +78,8 @@ onMounted(() => {
  * SEO Meta Data
  */
 useSeoMeta({
-  title: 'Planning Poker - Agile Estimation Made Easy',
-  description: 'Free Planning Poker tool for agile teams. Estimate user stories together with your team.',
+  title: t('app.name') + ' - ' + t('app.tagline'),
+  description: t('app.tagline'),
 })
 
 /**
@@ -134,15 +136,18 @@ function switchMode(newMode: 'create' | 'join'): void {
                 }"
               />
               <span class="hidden sm:inline">
-                {{ connectionStatus === 'connected' ? 'Connected' :
-                   connectionStatus === 'connecting' ? 'Connecting...' :
-                   connectionStatus === 'error' ? 'Error' : 'Offline' }}
+                {{ connectionStatus === 'connected' ? t('connection.connected') :
+                   connectionStatus === 'connecting' ? t('connection.connecting') :
+                   connectionStatus === 'error' ? t('connection.error') : t('connection.disconnected') }}
               </span>
             </div>
           </div>
 
-          <div v-if="session" class="text-sm text-secondary-600">
-            Session: <span class="font-medium">{{ session.name }}</span>
+          <div class="flex items-center gap-4">
+            <LanguageSwitcher />
+            <div v-if="session" class="text-sm text-secondary-600">
+              {{ t('session.info.sessionLabel') }} <span class="font-medium">{{ session.name }}</span>
+            </div>
           </div>
         </div>
       </div>
@@ -154,10 +159,10 @@ function switchMode(newMode: 'create' | 'join'): void {
       <div v-if="!session" class="py-12">
         <div class="text-center mb-8">
           <h2 class="text-3xl font-bold text-secondary-800 mb-2">
-            Welcome to Planning Poker
+            {{ t('home.welcome') }}
           </h2>
           <p class="text-secondary-600">
-            Start a new session or join an existing one.
+            {{ t('home.subtitle') }}
           </p>
         </div>
 
@@ -173,7 +178,7 @@ function switchMode(newMode: 'create' | 'join'): void {
               @click="switchMode('create')"
             >
               <Icon name="heroicons:plus" class="w-4 h-4 inline mr-1" />
-              New Session
+              {{ t('home.newSession') }}
             </button>
             <button
               type="button"
@@ -184,7 +189,7 @@ function switchMode(newMode: 'create' | 'join'): void {
               @click="switchMode('join')"
             >
               <Icon name="heroicons:arrow-right-on-rectangle" class="w-4 h-4 inline mr-1" />
-              Join
+              {{ t('home.join') }}
             </button>
           </div>
         </div>
@@ -210,9 +215,9 @@ function switchMode(newMode: 'create' | 'join'): void {
             <div class="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Icon name="heroicons:users" class="w-6 h-6 text-primary-600" />
             </div>
-            <h3 class="font-semibold text-secondary-800 mb-2">Team Estimation</h3>
+            <h3 class="font-semibold text-secondary-800 mb-2">{{ t('features.teamEstimation.title') }}</h3>
             <p class="text-sm text-secondary-600">
-              Estimate together with your team in real-time.
+              {{ t('features.teamEstimation.description') }}
             </p>
           </div>
 
@@ -220,9 +225,9 @@ function switchMode(newMode: 'create' | 'join'): void {
             <div class="w-12 h-12 bg-accent-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Icon name="heroicons:chart-bar" class="w-6 h-6 text-accent-600" />
             </div>
-            <h3 class="font-semibold text-secondary-800 mb-2">Statistics</h3>
+            <h3 class="font-semibold text-secondary-800 mb-2">{{ t('features.statistics.title') }}</h3>
             <p class="text-sm text-secondary-600">
-              See average, median and vote distribution.
+              {{ t('features.statistics.description') }}
             </p>
           </div>
 
@@ -230,9 +235,9 @@ function switchMode(newMode: 'create' | 'join'): void {
             <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
               <Icon name="heroicons:bolt" class="w-6 h-6 text-green-600" />
             </div>
-            <h3 class="font-semibold text-secondary-800 mb-2">Quick & Easy</h3>
+            <h3 class="font-semibold text-secondary-800 mb-2">{{ t('features.quickEasy.title') }}</h3>
             <p class="text-sm text-secondary-600">
-              No registration required. Get started immediately!
+              {{ t('features.quickEasy.description') }}
             </p>
           </div>
         </div>
@@ -256,39 +261,30 @@ function switchMode(newMode: 'create' | 'join'): void {
             :current-user-id="currentParticipant?.id"
           />
 
-          <SessionControls
+          <!-- Unified Host Controls -->
+          <HostControls
             :is-host="isHost"
             :status="session.status"
             :all-votes-in="allVotesIn"
             :current-story="session.currentStory"
-            :has-story-queue="session.storyQueue.length > 0"
+            :story-queue="session.storyQueue"
+            :current-story-index="session.currentStoryIndex"
             @start-voting="startVoting"
             @reveal="revealCards"
             @reset="resetVoting"
             @next-story="nextStory"
-          />
-
-          <!-- Story Queue (host only) -->
-          <StoryQueue
-            v-if="isHost"
-            :stories="session.storyQueue"
-            :current-index="session.currentStoryIndex"
-            :is-host="isHost"
-            :status="session.status"
             @add-story="addStory"
             @remove-story="removeStory"
-            @next-story="nextStory"
           />
         </div>
 
         <!-- Middle column: Main area -->
-                <!-- Middle column: Main area -->
         <div class="lg:col-span-6">
           <Transition name="slide-up" mode="out-in">
             <!-- Current Story -->
             <div v-if="session.currentStory" class="card-container mb-6">
               <div class="flex items-center justify-between mb-1">
-                <div class="text-xs text-secondary-500">Current Story</div>
+                <div class="text-xs text-secondary-500">{{ t('session.currentStory') }}</div>
                 <button
                   v-if="session.currentStoryDescription"
                   type="button"
@@ -296,7 +292,7 @@ function switchMode(newMode: 'create' | 'join'): void {
                   @click="showStoryPreview = true"
                 >
                   <Icon name="heroicons:eye" class="w-3 h-3" />
-                  Show details
+                  {{ t('session.showDetails') }}
                 </button>
               </div>
               <h2 class="text-xl font-bold text-secondary-800 mb-2">
@@ -314,7 +310,7 @@ function switchMode(newMode: 'create' | 'join'): void {
             <div v-else class="card-container mb-6 text-center py-8">
               <Icon name="heroicons:clock" class="w-12 h-12 text-secondary-300 mx-auto mb-4" />
               <p class="text-secondary-500">
-                Waiting for the host to start the next round...
+                {{ t('session.waitingForHost') }}
               </p>
             </div>
           </Transition>
@@ -339,7 +335,7 @@ function switchMode(newMode: 'create' | 'join'): void {
             >
               <Icon name="heroicons:eye" class="w-12 h-12 text-secondary-300 mx-auto mb-4" />
               <p class="text-secondary-500">
-                You are participating as an observer and cannot vote.
+                {{ t('observer.hint') }}
               </p>
             </div>
           </Transition>
@@ -359,7 +355,7 @@ function switchMode(newMode: 'create' | 'join'): void {
             <div v-else class="card-container text-center py-8">
               <Icon name="heroicons:eye-slash" class="w-12 h-12 text-secondary-300 mx-auto mb-4" />
               <p class="text-secondary-500">
-                Results will be shown once the cards are revealed.
+                {{ t('results.hiddenUntilReveal') }}
               </p>
             </div>
           </Transition>
@@ -370,9 +366,9 @@ function switchMode(newMode: 'create' | 'join'): void {
     <!-- Footer -->
     <footer class="mt-auto py-6 text-center text-sm text-secondary-500">
       <p>
-        Planning Poker - Built with
+        {{ t('app.name') }} -
         <Icon name="heroicons:heart-solid" class="w-4 h-4 inline text-error-500" />
-        and Nuxt 3
+        Nuxt 3
       </p>
     </footer>
 

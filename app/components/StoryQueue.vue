@@ -7,6 +7,8 @@
 
 import type { IStory } from '~/types/poker'
 
+const { t } = useI18n()
+
 /**
  * Props Definition
  */
@@ -50,11 +52,6 @@ const showAddForm = ref(false)
 const estimatedCount = computed(() => props.stories.filter(s => s.estimated).length)
 
 /**
- * Remaining stories
- */
-const remainingCount = computed(() => props.stories.length - estimatedCount.value)
-
-/**
  * Is there a next story?
  */
 const hasNextStory = computed(() => {
@@ -82,11 +79,11 @@ function handleAddStory(): void {
           <Icon name="heroicons:queue-list" class="w-5 h-5" />
         </div>
         <h3 class="text-lg font-bold text-secondary-900">
-          Story Queue
+          {{ t('storyQueue.title') }}
         </h3>
       </div>
       <div class="text-sm text-secondary-500">
-        {{ estimatedCount }}/{{ stories.length }} estimated
+        {{ estimatedCount }}/{{ stories.length }} {{ t('storyQueue.estimated') }}
       </div>
     </div>
 
@@ -101,7 +98,7 @@ function handleAddStory(): void {
     </div>
 
     <!-- Story Liste -->
-    <div v-if="stories.length > 0" class="space-y-2 mb-4 max-h-[300px] overflow-y-auto">
+    <div v-if="stories.length > 0" class="space-y-2 mb-4 max-h-[250px] overflow-y-auto overscroll-contain scrollbar-thin scrollbar-thumb-secondary-300 scrollbar-track-secondary-100">
       <div
         v-for="(story, index) in stories"
         :key="story.id"
@@ -146,7 +143,7 @@ function handleAddStory(): void {
           <button
             type="button"
             class="p-1 text-secondary-400 hover:text-secondary-600 transition-colors"
-            title="Edit"
+            :title="t('storyQueue.edit')"
             @click="emit('editStory', story)"
           >
             <Icon name="heroicons:pencil" class="w-4 h-4" />
@@ -154,7 +151,7 @@ function handleAddStory(): void {
           <button
             type="button"
             class="p-1 text-secondary-400 hover:text-red-500 transition-colors"
-            title="Remove"
+            :title="t('storyQueue.remove')"
             @click="emit('removeStory', story.id)"
           >
             <Icon name="heroicons:trash" class="w-4 h-4" />
@@ -166,7 +163,7 @@ function handleAddStory(): void {
     <!-- Empty queue -->
     <div v-else class="text-center py-6 text-secondary-500">
       <Icon name="heroicons:document-plus" class="w-8 h-8 mx-auto mb-2 opacity-50" />
-      <p class="text-sm">No stories yet</p>
+      <p class="text-sm">{{ t('storyQueue.title') }}</p>
     </div>
 
     <!-- Host Controls -->
@@ -178,13 +175,13 @@ function handleAddStory(): void {
             v-model="newStoryTitle"
             type="text"
             class="input text-sm"
-            placeholder="Story title..."
+            :placeholder="t('storyQueue.storyTitlePlaceholder')"
             @keyup.enter="handleAddStory"
           >
           <textarea
             v-model="newStoryDescription"
             class="input text-sm min-h-[60px] resize-y"
-            placeholder="Description (Markdown)..."
+            :placeholder="t('storyQueue.descriptionPlaceholder')"
           />
           <div class="flex gap-2">
             <button
@@ -194,15 +191,14 @@ function handleAddStory(): void {
               @click="handleAddStory"
             >
               <Icon name="heroicons:plus" class="w-4 h-4 mr-1" />
-              Add
+              {{ t('storyQueue.addToQueue') }}
             </button>
             <button
               type="button"
               class="btn-secondary text-sm py-1.5"
               @click="showAddForm = false"
             >
-              Cancel
-            </button>
+              {{ t('storyQueue.cancel') }}
             </button>
           </div>
         </div>
@@ -216,7 +212,7 @@ function handleAddStory(): void {
           @click="showAddForm = true"
         >
           <Icon name="heroicons:plus" class="w-4 h-4 mr-1" />
-          Add Story
+          {{ t('storyQueue.addStory') }}
         </button>
 
         <button
@@ -226,13 +222,8 @@ function handleAddStory(): void {
           @click="emit('nextStory')"
         >
           <Icon name="heroicons:forward" class="w-4 h-4 mr-1" />
-          {{ currentIndex < 0 ? 'Start' : 'Next Story' }}
+          {{ currentIndex < 0 ? t('controls.startVoting') : t('controls.nextStory') }}
         </button>
-      </div>
-
-      <!-- Remaining Info -->
-      <div v-if="remainingCount > 0" class="text-xs text-secondary-500 text-center">
-        {{ remainingCount }} {{ remainingCount === 1 ? 'story' : 'stories' }} remaining
       </div>
     </div>
   </div>
