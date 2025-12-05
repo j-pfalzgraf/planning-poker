@@ -6,7 +6,7 @@
  */
 
 import type { Peer } from 'crossws'
-import type { IParticipant, ISession, PokerValue } from '../../app/types/poker'
+import type { IParticipant, ISession, IStory, PokerValue } from '../../app/types/poker'
 import { JOIN_CODE_CHARS, JOIN_CODE_LENGTH } from '../../app/types/poker'
 
 /**
@@ -92,6 +92,8 @@ class SessionStore {
       hostId: participantId,
       createdAt: new Date(),
       updatedAt: new Date(),
+      currentStoryIndex: -1,
+      storyQueue: [],
     }
 
     const managedSession: ManagedSession = {
@@ -289,6 +291,177 @@ class SessionStore {
 
     managed.session.currentStory = story
     managed.session.currentStoryDescription = description || null
+    managed.session.status = 'voting'
+    managed.session.cardsRevealed = false
+    managed.session.participants.forEach((p) => {
+      p.selectedValue = null
+    })
+    managed.session.updatedAt = new Date()
+    managed.lastActivity = Date.now()
+
+    return managed.session
+  }
+
+  /**
+   * Fügt eine Story zur Queue hinzu
+   */
+  addStory(peer: Peer, title: string, description?: string): ISession | null {
+    const participantId = this.peerToParticipant.get(peer)
+    if (!participantId) return null
+
+    const sessionId = this.participantToSession.get(participantId)
+    if (!sessionId) return null
+
+    const managed = this.sessions.get(sessionId)
+    if (!managed) return null
+
+    if (managed.session.hostId !== participantId) return null
+
+    const story: IStory = {
+      id: generateId(),
+      title: title.trim(),
+      description: description?.trim() || null,
+      estimated: false,
+      estimatedValue: null,
+    }
+
+    managed.session.storyQueue.push(story)
+    managed.session.updatedAt = new Date()
+    managed.lastActivity = Date.now()
+
+    return managed.session
+  }
+
+  /**
+   * Entfernt eine Story aus der Queue
+   */
+  removeStory(peer: Peer, storyId: string): ISession | null {
+    const participantId = this.peerToParticipant.get(peer)
+    if (!participantId) return null
+
+    const sessionId = this.participantToSession.get(participantId)
+    if (!sessionId) return null
+
+    const managed = this.sessions.get(sessionId)
+    if (!managed) return null
+
+    if (managed.session.hostId !== participantId) return null
+
+    const storyIndex = managed.session.storyQueue.findIndex(s => s.id === storyId)
+    if (storyIndex === -1) return null
+
+    managed.session.storyQueue.splice(storyIndex, 1)
+
+    // Adjust currentStoryIndex if needed
+    if (storyIndex < managed.session.currentStoryIndex) {
+      managed.session.currentStoryIndex--
+    } else if (storyIndex === managed.session.currentStoryIndex) {
+      managed.session.currentStoryIndex = -1
+      managed.session.currentStory = null
+      managed.session.currentStoryDescription = null
+      managed.session.status = 'waiting'
+    }
+
+    managed.session.updatedAt = new Date()
+    managed.lastActivity = Date.now()
+
+    return managed.session
+  }
+
+  /**
+   * Aktualisiert eine Story
+   */
+  updateStory(peer: Peer, storyId: string, title: string, description?: string): ISession | null {
+    const participantId = this.peerToParticipant.get(peer)
+    if (!participantId) return null
+
+    const sessionId = this.participantToSession.get(participantId)
+    if (!sessionId) return null
+
+    const managed = this.sessions.get(sessionId)
+    if (!managed) return null
+
+    if (managed.session.hostId !== participantId) return null
+
+    const story = managed.session.storyQueue.find(s => s.id === storyId)
+    if (!story) return null
+
+    story.title = title.trim()
+    story.description = description?.trim() || null
+
+    // Update current story if it's the one being edited
+    if (managed.session.storyQueue[managed.session.currentStoryIndex]?.id === storyId) {
+      managed.session.currentStory = story.title
+      managed.session.currentStoryDescription = story.description
+    }
+
+    managed.session.updatedAt = new Date()
+    managed.lastActivity = Date.now()
+
+    return managed.session
+  }
+
+  /**
+   * Startet die nächste Story in der Queue
+   */
+  nextStory(peer: Peer): ISession | null {
+    const participantId = this.peerToParticipant.get(peer)
+    if (!participantId) return null
+
+    const sessionId = this.participantToSession.get(participantId)
+    if (!sessionId) return null
+
+    const managed = this.sessions.get(sessionId)
+    if (!managed) return null
+
+    if (managed.session.hostId !== participantId) return null
+
+    // Mark current story as estimated if revealed
+    if (managed.session.currentStoryIndex >= 0 && managed.session.cardsRevealed) {
+      const currentStory = managed.session.storyQueue[managed.session.currentStoryIndex]
+      if (currentStory) {
+        currentStory.estimated = true
+        // Calculate mode as estimated value
+        const votes = managed.session.participants
+          .filter(p => !p.isObserver && p.selectedValue !== null)
+          .map(p => p.selectedValue!)
+        if (votes.length > 0) {
+          const frequency = new Map<PokerValue, number>()
+          let maxFreq = 0
+          let mode: PokerValue | null = null
+          votes.forEach((value) => {
+            const freq = (frequency.get(value) || 0) + 1
+            frequency.set(value, freq)
+            if (freq > maxFreq) {
+              maxFreq = freq
+              mode = value
+            }
+          })
+          currentStory.estimatedValue = mode
+        }
+      }
+    }
+
+    // Find next unestimated story
+    let nextIndex = managed.session.currentStoryIndex + 1
+    while (nextIndex < managed.session.storyQueue.length) {
+      if (!managed.session.storyQueue[nextIndex]?.estimated) {
+        break
+      }
+      nextIndex++
+    }
+
+    if (nextIndex >= managed.session.storyQueue.length) {
+      // No more stories
+      return null
+    }
+
+    const nextStory = managed.session.storyQueue[nextIndex]
+    if (!nextStory) return null
+
+    managed.session.currentStoryIndex = nextIndex
+    managed.session.currentStory = nextStory.title
+    managed.session.currentStoryDescription = nextStory.description
     managed.session.status = 'voting'
     managed.session.cardsRevealed = false
     managed.session.participants.forEach((p) => {

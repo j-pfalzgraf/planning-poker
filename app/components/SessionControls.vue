@@ -17,10 +17,13 @@ interface Props {
   allVotesIn: boolean
   /** Aktuelle Story */
   currentStory?: string | null
+  /** Gibt es eine Story-Queue? */
+  hasStoryQueue?: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
   currentStory: null,
+  hasStoryQueue: false,
 })
 
 /**
@@ -33,6 +36,8 @@ const emit = defineEmits<{
   reveal: []
   /** Setzt die Runde zurück */
   reset: []
+  /** Nächste Story aus Queue */
+  nextStory: []
 }>()
 
 /**
@@ -46,7 +51,7 @@ const descriptionInput = ref('')
  */
 function handleStartVoting(): void {
   if (storyInput.value.trim()) {
-    emit('startVoting', storyInput.value.trim(), descriptionInput.value.trim())
+    emit('startVoting', storyInput.value.trim(), descriptionInput.value.trim() || undefined)
     storyInput.value = ''
     descriptionInput.value = ''
   }
@@ -64,8 +69,8 @@ function handleStartVoting(): void {
       </h3>
     </div>
 
-    <!-- Neue Runde starten -->
-    <div v-if="props.status === 'waiting' || props.status === 'revealed'" class="space-y-3">
+    <!-- Neue Runde starten (nur wenn keine Story-Queue) -->
+    <div v-if="(props.status === 'waiting' || props.status === 'revealed') && !props.hasStoryQueue" class="space-y-3">
       <div>
         <label for="story-input" class="block text-sm font-medium text-secondary-700 mb-1">
           Story / Task
@@ -103,6 +108,14 @@ function handleStartVoting(): void {
       </button>
     </div>
 
+    <!-- Warten auf Start (mit Story-Queue) -->
+    <div v-else-if="props.status === 'waiting' && props.hasStoryQueue" class="text-center py-4">
+      <Icon name="heroicons:queue-list" class="w-8 h-8 text-secondary-300 mx-auto mb-2" />
+      <p class="text-sm text-secondary-500">
+        Nutze die Story Queue um die nächste Runde zu starten.
+      </p>
+    </div>
+
     <!-- Aktive Abstimmung -->
     <div v-else-if="props.status === 'voting'" class="space-y-3">
       <div class="p-3 bg-primary-50 rounded-lg">
@@ -128,6 +141,32 @@ function handleStartVoting(): void {
       >
         <Icon name="heroicons:arrow-path" class="w-5 h-5 mr-2" />
         Zurücksetzen
+      </button>
+    </div>
+
+    <!-- Ergebnis angezeigt (mit Story Queue) -->
+    <div v-else-if="props.status === 'revealed' && props.hasStoryQueue" class="space-y-3">
+      <div class="p-3 bg-green-50 rounded-lg border border-green-200">
+        <div class="text-xs text-green-600 mb-1">Abstimmung abgeschlossen</div>
+        <div class="font-medium text-green-800">{{ props.currentStory }}</div>
+      </div>
+
+      <button
+        type="button"
+        class="btn-primary w-full"
+        @click="emit('nextStory')"
+      >
+        <Icon name="heroicons:forward" class="w-5 h-5 mr-2" />
+        Nächste Story
+      </button>
+
+      <button
+        type="button"
+        class="btn-secondary w-full"
+        @click="emit('reset')"
+      >
+        <Icon name="heroicons:arrow-path" class="w-5 h-5 mr-2" />
+        Erneut abstimmen
       </button>
     </div>
   </div>

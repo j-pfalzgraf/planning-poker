@@ -7,12 +7,16 @@
 
 import type { Peer } from 'crossws'
 import type {
+    AddStoryPayload,
     ClientMessage,
     CreateSessionPayload,
     JoinSessionPayload,
+    NextStoryPayload,
+    RemoveStoryPayload,
     SelectVotePayload,
     ServerMessage,
     StartVotingPayload,
+    UpdateStoryPayload,
 } from '../../app/types/websocket'
 import { sessionStore } from '../utils/sessionStore'
 
@@ -83,6 +87,22 @@ function handleMessage(peer: Peer, data: string): void {
 
       case 'voting:start':
         handleStartVoting(peer, message.payload as StartVotingPayload)
+        break
+
+      case 'story:add':
+        handleAddStory(peer, message.payload as AddStoryPayload)
+        break
+
+      case 'story:remove':
+        handleRemoveStory(peer, message.payload as RemoveStoryPayload)
+        break
+
+      case 'story:update':
+        handleUpdateStory(peer, message.payload as UpdateStoryPayload)
+        break
+
+      case 'story:next':
+        handleNextStory(peer, message.payload as NextStoryPayload)
         break
 
       case 'ping':
@@ -265,6 +285,74 @@ function handleStartVoting(peer: Peer, payload: StartVotingPayload): void {
   broadcastToSession(session.id, 'session:updated', {
     session,
   })
+}
+
+/**
+ * Fügt eine Story zur Queue hinzu
+ */
+function handleAddStory(peer: Peer, payload: AddStoryPayload): void {
+  const session = sessionStore.addStory(peer, payload.title, payload.description)
+
+  if (!session) {
+    sendMessage(peer, 'session:error', {
+      message: 'Nur der Host kann Storys hinzufügen.',
+      code: 'NOT_AUTHORIZED',
+    })
+    return
+  }
+
+  broadcastToSession(session.id, 'session:updated', { session })
+}
+
+/**
+ * Entfernt eine Story aus der Queue
+ */
+function handleRemoveStory(peer: Peer, payload: RemoveStoryPayload): void {
+  const session = sessionStore.removeStory(peer, payload.storyId)
+
+  if (!session) {
+    sendMessage(peer, 'session:error', {
+      message: 'Nur der Host kann Storys entfernen.',
+      code: 'NOT_AUTHORIZED',
+    })
+    return
+  }
+
+  broadcastToSession(session.id, 'session:updated', { session })
+}
+
+/**
+ * Aktualisiert eine Story
+ */
+function handleUpdateStory(peer: Peer, payload: UpdateStoryPayload): void {
+  const session = sessionStore.updateStory(peer, payload.storyId, payload.title, payload.description)
+
+  if (!session) {
+    sendMessage(peer, 'session:error', {
+      message: 'Nur der Host kann Storys bearbeiten.',
+      code: 'NOT_AUTHORIZED',
+    })
+    return
+  }
+
+  broadcastToSession(session.id, 'session:updated', { session })
+}
+
+/**
+ * Startet die nächste Story
+ */
+function handleNextStory(peer: Peer, _payload: NextStoryPayload): void {
+  const session = sessionStore.nextStory(peer)
+
+  if (!session) {
+    sendMessage(peer, 'session:error', {
+      message: 'Keine weiteren Storys vorhanden oder nicht autorisiert.',
+      code: 'NOT_AUTHORIZED',
+    })
+    return
+  }
+
+  broadcastToSession(session.id, 'session:updated', { session })
 }
 
 /**

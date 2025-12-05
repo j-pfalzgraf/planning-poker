@@ -25,6 +25,9 @@ const {
   selectCard,
   revealCards,
   startVoting,
+  addStory,
+  removeStory,
+  nextStory,
   resetVoting,
   leaveSession,
   clearError,
@@ -37,6 +40,11 @@ const parsedDescription = computed(() => {
   if (!session.value?.currentStoryDescription) return ''
   return marked.parse(session.value.currentStoryDescription) as string
 })
+
+/**
+ * Story Preview Modal State
+ */
+const showStoryPreview = ref(false)
 
 /**
  * Route für Join-Code aus URL
@@ -253,9 +261,23 @@ function switchMode(newMode: 'create' | 'join'): void {
             :status="session.status"
             :all-votes-in="allVotesIn"
             :current-story="session.currentStory"
+            :has-story-queue="session.storyQueue.length > 0"
             @start-voting="startVoting"
             @reveal="revealCards"
             @reset="resetVoting"
+            @next-story="nextStory"
+          />
+
+          <!-- Story Queue (nur Host) -->
+          <StoryQueue
+            v-if="isHost"
+            :stories="session.storyQueue"
+            :current-index="session.currentStoryIndex"
+            :is-host="isHost"
+            :status="session.status"
+            @add-story="addStory"
+            @remove-story="removeStory"
+            @next-story="nextStory"
           />
         </div>
 
@@ -265,14 +287,25 @@ function switchMode(newMode: 'create' | 'join'): void {
           <Transition name="slide-up" mode="out-in">
             <!-- Aktuelle Story -->
             <div v-if="session.currentStory" class="card-container mb-6">
-              <div class="text-xs text-secondary-500 mb-1">Aktuelle Story</div>
+              <div class="flex items-center justify-between mb-1">
+                <div class="text-xs text-secondary-500">Aktuelle Story</div>
+                <button
+                  v-if="session.currentStoryDescription"
+                  type="button"
+                  class="text-xs text-primary-600 hover:text-primary-700 flex items-center gap-1"
+                  @click="showStoryPreview = true"
+                >
+                  <Icon name="heroicons:eye" class="w-3 h-3" />
+                  Details anzeigen
+                </button>
+              </div>
               <h2 class="text-xl font-bold text-secondary-800 mb-2">
                 {{ session.currentStory }}
               </h2>
               <!-- eslint-disable-next-line vue/no-v-html -->
               <div
                 v-if="session.currentStoryDescription"
-                class="prose prose-sm max-w-none text-secondary-600 bg-secondary-50 p-3 rounded-lg"
+                class="prose prose-sm max-w-none text-secondary-600 bg-secondary-50 p-3 rounded-lg line-clamp-3"
                 v-html="parsedDescription"
               />
             </div>
@@ -342,5 +375,14 @@ function switchMode(newMode: 'create' | 'join'): void {
         und Nuxt 3
       </p>
     </footer>
+
+    <!-- Story Preview Modal -->
+    <StoryPreview
+      v-if="session"
+      :visible="showStoryPreview"
+      :title="session.currentStory || ''"
+      :description="session.currentStoryDescription"
+      @close="showStoryPreview = false"
+    />
   </div>
 </template>

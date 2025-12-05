@@ -342,13 +342,65 @@ export function useSession() {
    * Startet eine neue Abstimmungsrunde (nur Host)
    *
    * @param story - Die zu schätzende Story
+   * @param description - Optionale Beschreibung
    */
-  function startVoting(story: string): void {
+  function startVoting(story: string, description?: string): void {
     if (!state.value.session || !state.value.isHost) return
 
     send('voting:start', {
       sessionId: state.value.session.id,
       story,
+      description,
+    })
+  }
+
+  /**
+   * Fügt eine Story zur Queue hinzu (nur Host)
+   */
+  function addStory(title: string, description?: string): void {
+    if (!state.value.session || !state.value.isHost) return
+
+    send('story:add', {
+      sessionId: state.value.session.id,
+      title,
+      description,
+    })
+  }
+
+  /**
+   * Entfernt eine Story aus der Queue (nur Host)
+   */
+  function removeStory(storyId: string): void {
+    if (!state.value.session || !state.value.isHost) return
+
+    send('story:remove', {
+      sessionId: state.value.session.id,
+      storyId,
+    })
+  }
+
+  /**
+   * Aktualisiert eine Story (nur Host)
+   */
+  function updateStory(storyId: string, title: string, description?: string): void {
+    if (!state.value.session || !state.value.isHost) return
+
+    send('story:update', {
+      sessionId: state.value.session.id,
+      storyId,
+      title,
+      description,
+    })
+  }
+
+  /**
+   * Startet die nächste Story (nur Host)
+   */
+  function nextStory(): void {
+    if (!state.value.session || !state.value.isHost) return
+
+    send('story:next', {
+      sessionId: state.value.session.id,
     })
   }
 
@@ -403,6 +455,10 @@ export function useSession() {
     selectCard,
     revealCards,
     startVoting,
+    addStory,
+    removeStory,
+    updateStory,
+    nextStory,
     resetVoting,
     leaveSession,
     clearError,

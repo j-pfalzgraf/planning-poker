@@ -54,6 +54,22 @@ export function formatJoinCode(code: string): string {
 }
 
 /**
+ * Repräsentiert eine zu schätzende Story
+ */
+export interface IStory {
+  /** Eindeutige ID der Story */
+  id: string
+  /** Titel der Story */
+  title: string
+  /** Beschreibung (Markdown) */
+  description: string | null
+  /** Bereits geschätzt? */
+  estimated: boolean
+  /** Geschätzter Wert (nach Abstimmung) */
+  estimatedValue: PokerValue | null
+}
+
+/**
  * Repräsentiert einen Teilnehmer in einer Session
  */
 export interface IParticipant {
@@ -98,6 +114,10 @@ export interface ISession {
   createdAt: Date
   /** Letztes Update */
   updatedAt: Date
+  /** Index der aktuellen Story in der Queue */
+  currentStoryIndex: number
+  /** Queue mit vorbereiteten Storys */
+  storyQueue: IStory[]
 }
 
 /**

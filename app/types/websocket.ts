@@ -18,6 +18,10 @@ export type ClientMessageType =
   | 'vote:reveal'
   | 'vote:reset'
   | 'voting:start'
+  | 'story:add'
+  | 'story:remove'
+  | 'story:next'
+  | 'story:update'
   | 'ping'
 
 /**
@@ -88,6 +92,28 @@ export interface StartVotingPayload {
   sessionId: string
   story: string
   description?: string
+}
+
+export interface AddStoryPayload {
+  sessionId: string
+  title: string
+  description?: string
+}
+
+export interface RemoveStoryPayload {
+  sessionId: string
+  storyId: string
+}
+
+export interface UpdateStoryPayload {
+  sessionId: string
+  storyId: string
+  title: string
+  description?: string
+}
+
+export interface NextStoryPayload {
+  sessionId: string
 }
 
 // ============================================

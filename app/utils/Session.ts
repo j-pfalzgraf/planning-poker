@@ -5,7 +5,7 @@
  * Enthält die Kernlogik für das Abstimmungsmanagement.
  */
 
-import type { ISession, ISessionConfig, IVotingResult, PokerValue, SessionStatus } from '~/types'
+import type { ISession, ISessionConfig, IStory, IVotingResult, PokerValue, SessionStatus } from '~/types'
 import { POKER_VALUES } from '~/types'
 import { Participant } from './Participant'
 
@@ -40,6 +40,8 @@ export class Session implements ISession {
   public readonly hostId: string
   public readonly createdAt: Date
   public updatedAt: Date
+  public storyQueue: IStory[]
+  public currentStoryIndex: number
 
   private config: ISessionConfig
   private votingHistory: IVotingResult[]
@@ -64,6 +66,8 @@ export class Session implements ISession {
     this.updatedAt = new Date()
     this.config = { ...DEFAULT_CONFIG, ...config }
     this.votingHistory = []
+    this.storyQueue = []
+    this.currentStoryIndex = -1
   }
 
   /**
@@ -300,6 +304,8 @@ export class Session implements ISession {
       hostId: this.hostId,
       createdAt: this.createdAt,
       updatedAt: this.updatedAt,
+      storyQueue: this.storyQueue,
+      currentStoryIndex: this.currentStoryIndex,
     }
   }
 
@@ -311,10 +317,13 @@ export class Session implements ISession {
     Object.assign(session, {
       id: data.id,
       currentStory: data.currentStory,
+      currentStoryDescription: data.currentStoryDescription,
       status: data.status,
       cardsRevealed: data.cardsRevealed,
       createdAt: new Date(data.createdAt),
       updatedAt: new Date(data.updatedAt),
+      storyQueue: data.storyQueue ?? [],
+      currentStoryIndex: data.currentStoryIndex ?? -1,
     })
 
     session.participants = data.participants.map(p => Participant.fromJSON(p))
