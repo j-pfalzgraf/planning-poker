@@ -6,6 +6,7 @@
  * Enables creating a new session or displays the active session.
  */
 
+import DOMPurify from 'dompurify'
 import { marked } from 'marked'
 
 const { t } = useI18n()
@@ -36,11 +37,12 @@ const {
 } = useSession()
 
 /**
- * Parsed Markdown Description
+ * Parsed and sanitized Markdown Description
  */
 const parsedDescription = computed(() => {
   if (!session.value?.currentStoryDescription) return ''
-  return marked.parse(session.value.currentStoryDescription) as string
+  const rawHtml = marked.parse(session.value.currentStoryDescription, { async: false }) as string
+  return DOMPurify.sanitize(rawHtml)
 })
 
 /**
@@ -298,12 +300,16 @@ function switchMode(newMode: 'create' | 'join'): void {
               <h2 class="text-xl font-bold text-secondary-800 mb-2">
                 {{ session.currentStory }}
               </h2>
-              <!-- eslint-disable-next-line vue/no-v-html -->
+              <!--
+                eslint-disable vue/no-v-html
+                Reason: HTML is sanitized with DOMPurify to prevent XSS attacks
+              -->
               <div
                 v-if="session.currentStoryDescription"
                 class="prose prose-sm max-w-none text-secondary-600 bg-secondary-50 p-3 rounded-lg line-clamp-3"
                 v-html="parsedDescription"
               />
+              <!-- eslint-enable vue/no-v-html -->
             </div>
 
             <!-- Waiting Status -->

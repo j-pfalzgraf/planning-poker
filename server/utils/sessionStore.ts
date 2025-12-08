@@ -245,7 +245,7 @@ class SessionStore {
   }
 
   /**
-   * Resets the voting
+   * Resets the voting (clears votes but keeps the current story)
    */
   resetVoting(peer: Peer): ISession | null {
     const participantId = this.peerToParticipant.get(peer)
@@ -260,13 +260,22 @@ class SessionStore {
     // Only host can reset
     if (managed.session.hostId !== participantId) return null
 
+    // Reset votes but keep current story
     managed.session.cardsRevealed = false
-    managed.session.status = 'waiting'
-    managed.session.currentStory = null
-    managed.session.currentStoryDescription = null
+    managed.session.status = managed.session.currentStory ? 'voting' : 'waiting'
     managed.session.participants.forEach((p) => {
       p.selectedValue = null
     })
+
+    // If we're in a queue and the current story was marked as estimated, unmark it
+    if (managed.session.currentStoryIndex >= 0 && managed.session.storyQueue.length > 0) {
+      const currentQueueStory = managed.session.storyQueue[managed.session.currentStoryIndex]
+      if (currentQueueStory) {
+        currentQueueStory.estimated = false
+        currentQueueStory.estimatedValue = null
+      }
+    }
+
     managed.session.updatedAt = new Date()
     managed.lastActivity = Date.now()
 

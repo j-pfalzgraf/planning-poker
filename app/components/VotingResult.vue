@@ -5,8 +5,9 @@
  * Displays the results of a voting round.
  */
 
-import { marked } from 'marked';
-import type { IParticipant, PokerValue } from '~/types';
+import DOMPurify from 'dompurify'
+import { marked } from 'marked'
+import type { IParticipant, PokerValue } from '~/types'
 
 const { t } = useI18n()
 
@@ -25,11 +26,12 @@ interface Props {
 const props = defineProps<Props>()
 
 /**
- * Parsed Markdown Description
+ * Parsed and sanitized Markdown Description
  */
 const parsedDescription = computed(() => {
   if (!props.description) return ''
-  return marked.parse(props.description) as string
+  const rawHtml = marked.parse(props.description, { async: false }) as string
+  return DOMPurify.sanitize(rawHtml)
 })
 
 /**
@@ -117,12 +119,16 @@ const hasConsensus = computed(() => {
     <div v-if="story" class="mb-6 p-4 bg-white border border-secondary-200 rounded-xl shadow-sm">
       <div class="text-xs text-secondary-500 mb-1">{{ t('session.currentStory') }}</div>
       <h3 class="text-lg font-bold text-secondary-800 mb-2">{{ story }}</h3>
-      <!-- eslint-disable-next-line vue/no-v-html -->
+      <!--
+        eslint-disable vue/no-v-html
+        Reason: HTML is sanitized with DOMPurify to prevent XSS attacks
+      -->
       <div
         v-if="description"
         class="prose prose-sm max-w-none text-secondary-600 bg-secondary-50 p-3 rounded-lg"
         v-html="parsedDescription"
       />
+      <!-- eslint-enable vue/no-v-html -->
     </div>
 
     <!-- Consensus display -->

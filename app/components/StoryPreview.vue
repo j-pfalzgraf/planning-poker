@@ -36,7 +36,7 @@ const emit = defineEmits<{
  */
 const parsedDescription = computed(() => {
   if (!props.description) return ''
-  const rawHtml = marked.parse(props.description) as string
+  const rawHtml = marked.parse(props.description, { async: false }) as string
   return DOMPurify.sanitize(rawHtml)
 })
 
