@@ -151,21 +151,26 @@
     "matrix": {
       "title": "Матрица риск‑сложность",
       "subtitle": "Определяйте story points по соотношению риска и сложности",
+      "axis": {
+        "risk": "Риск",
+        "complexity": "Сложность"
+      },
       "levels": {
+        "veryLow": "Очень низкий",
         "low": "Низкий",
         "medium": "Средний",
         "high": "Высокий"
       },
       "cells": {
-        "lowLow": "0–1",
-        "lowMedium": "2–3",
-        "lowHigh": "5",
+        "lowLow": "0",
+        "lowMedium": "1–2",
+        "lowHigh": "3–5",
         "mediumLow": "2–3",
-        "mediumMedium": "5",
+        "mediumMedium": "5–8",
         "mediumHigh": "8–13",
-        "highLow": "5–8",
-        "highMedium": "13",
-        "highHigh": "21+"
+        "highLow": "13",
+        "highMedium": "21–40",
+        "highHigh": "100"
       },
       "hint": "Чем выше риск и сложность, тем выше оценка. При высокой неопределенности выбирайте ?."
     },

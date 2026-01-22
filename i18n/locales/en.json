@@ -151,21 +151,26 @@
     "matrix": {
       "title": "Risk vs Complexity Matrix",
       "subtitle": "Derive story points from the risk-to-complexity ratio",
+      "axis": {
+        "risk": "Risk",
+        "complexity": "Complexity"
+      },
       "levels": {
+        "veryLow": "Very Low",
         "low": "Low",
         "medium": "Medium",
         "high": "High"
       },
       "cells": {
-        "lowLow": "0–1",
-        "lowMedium": "2–3",
-        "lowHigh": "5",
+        "lowLow": "0",
+        "lowMedium": "1–2",
+        "lowHigh": "3–5",
         "mediumLow": "2–3",
-        "mediumMedium": "5",
+        "mediumMedium": "5–8",
         "mediumHigh": "8–13",
-        "highLow": "5–8",
-        "highMedium": "13",
-        "highHigh": "21+"
+        "highLow": "13",
+        "highMedium": "21–40",
+        "highHigh": "100"
       },
       "hint": "Higher risk and complexity lead to higher points. If uncertainty is high, choose ?."
     },

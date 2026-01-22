@@ -59,8 +59,8 @@ const pointCategories = computed<PointCategory[]>(() => [
   {
     value: '0',
     label: '0',
-    color: 'text-secondary-600',
-    bgColor: 'bg-secondary-100',
+    color: 'text-emerald-600',
+    bgColor: 'bg-emerald-100',
     effort: t('storyExamples.efforts.minimal'),
     risk: t('storyExamples.risks.none'),
     examples: [
@@ -103,8 +103,8 @@ const pointCategories = computed<PointCategory[]>(() => [
   {
     value: '2',
     label: '2',
-    color: 'text-green-700',
-    bgColor: 'bg-green-100',
+    color: 'text-lime-600',
+    bgColor: 'bg-lime-100',
     effort: t('storyExamples.efforts.small'),
     risk: t('storyExamples.risks.low'),
     examples: [
@@ -125,8 +125,8 @@ const pointCategories = computed<PointCategory[]>(() => [
   {
     value: '3',
     label: '3',
-    color: 'text-blue-600',
-    bgColor: 'bg-blue-100',
+    color: 'text-yellow-600',
+    bgColor: 'bg-yellow-100',
     effort: t('storyExamples.efforts.halfDay'),
     risk: t('storyExamples.risks.moderate'),
     examples: [
@@ -147,8 +147,8 @@ const pointCategories = computed<PointCategory[]>(() => [
   {
     value: '5',
     label: '5',
-    color: 'text-blue-700',
-    bgColor: 'bg-blue-100',
+    color: 'text-amber-600',
+    bgColor: 'bg-amber-100',
     effort: t('storyExamples.efforts.oneToTwoDays'),
     risk: t('storyExamples.risks.moderate'),
     examples: [
@@ -169,8 +169,8 @@ const pointCategories = computed<PointCategory[]>(() => [
   {
     value: '8',
     label: '8',
-    color: 'text-amber-600',
-    bgColor: 'bg-amber-100',
+    color: 'text-orange-600',
+    bgColor: 'bg-orange-100',
     effort: t('storyExamples.efforts.twoToThreeDays'),
     risk: t('storyExamples.risks.elevated'),
     examples: [
@@ -191,8 +191,8 @@ const pointCategories = computed<PointCategory[]>(() => [
   {
     value: '13',
     label: '13',
-    color: 'text-orange-600',
-    bgColor: 'bg-orange-100',
+    color: 'text-orange-700',
+    bgColor: 'bg-orange-200',
     effort: t('storyExamples.efforts.threeToFiveDays'),
     risk: t('storyExamples.risks.high'),
     examples: [
@@ -236,7 +236,7 @@ const pointCategories = computed<PointCategory[]>(() => [
     value: '40',
     label: '40',
     color: 'text-red-700',
-    bgColor: 'bg-red-100',
+    bgColor: 'bg-red-200',
     effort: t('storyExamples.efforts.oneToTwoWeeks'),
     risk: t('storyExamples.risks.veryHigh'),
     examples: [
@@ -251,8 +251,8 @@ const pointCategories = computed<PointCategory[]>(() => [
   {
     value: '100',
     label: '100',
-    color: 'text-purple-600',
-    bgColor: 'bg-purple-100',
+    color: 'text-red-800',
+    bgColor: 'bg-red-200',
     effort: t('storyExamples.efforts.epic'),
     risk: t('storyExamples.risks.veryHigh'),
     examples: [
@@ -307,33 +307,93 @@ const selectedCategory = computed(() => {
 
 /**
  * Matrix data for risk vs complexity
+ * 4 rows (veryLow, low, medium, high) × 3 columns = 12 cells for 10 story points
+ * Each cell contains individual story point values as badges
  */
-const matrixRows = computed(() => [
+interface MatrixCell {
+  values: string[]
+}
+
+interface MatrixRow {
+  label: string
+  cells: MatrixCell[]
+}
+
+const matrixRows = computed<MatrixRow[]>(() => [
+  {
+    label: t('storyExamples.matrix.levels.veryLow'),
+    cells: [
+      { values: ['0'] },
+      { values: ['1'] },
+      { values: ['2'] },
+    ],
+  },
   {
     label: t('storyExamples.matrix.levels.low'),
     cells: [
-      t('storyExamples.matrix.cells.lowLow'),
-      t('storyExamples.matrix.cells.lowMedium'),
-      t('storyExamples.matrix.cells.lowHigh'),
+      { values: ['1'] },
+      { values: ['2'] },
+      { values: ['3'] },
     ],
   },
   {
     label: t('storyExamples.matrix.levels.medium'),
     cells: [
-      t('storyExamples.matrix.cells.mediumLow'),
-      t('storyExamples.matrix.cells.mediumMedium'),
-      t('storyExamples.matrix.cells.mediumHigh'),
+      { values: ['3'] },
+      { values: ['5'] },
+      { values: ['8'] },
     ],
   },
   {
     label: t('storyExamples.matrix.levels.high'),
     cells: [
-      t('storyExamples.matrix.cells.highLow'),
-      t('storyExamples.matrix.cells.highMedium'),
-      t('storyExamples.matrix.cells.highHigh'),
+      { values: ['13'] },
+      { values: ['21'] },
+      { values: ['40', '100'] },
     ],
   },
 ])
+
+/**
+ * Matrix color mapping based on combined risk × complexity severity
+ * Gradient from green (low severity) through yellow/orange to red (high severity)
+ */
+const matrixCellClasses = (rowIndex: number, cellIndex: number): string => {
+  // Calculate severity score (0-6) based on row + column
+  const severity = rowIndex + cellIndex
+
+  const severityColors: string[] = [
+    'bg-emerald-50 border-emerald-200',   // 0: Very Low × Low
+    'bg-green-50 border-green-200',       // 1: Very Low × Med, Low × Low
+    'bg-lime-50 border-lime-200',         // 2: Very Low × High, Low × Med, Med × Low
+    'bg-yellow-50 border-yellow-200',     // 3: Low × High, Med × Med, High × Low
+    'bg-amber-50 border-amber-200',       // 4: Med × High, High × Med
+    'bg-orange-50 border-orange-200',     // 5: High × High
+    'bg-red-50 border-red-200',           // 6: (overflow)
+  ]
+
+  return severityColors[severity] ?? 'bg-secondary-50 border-secondary-200'
+}
+
+/**
+ * Badge color based on story point value
+ * Consistent color scheme matching the severity gradient
+ */
+const getBadgeClasses = (value: string): string => {
+  const badgeColors: Record<string, string> = {
+    '0': 'bg-emerald-500 text-white',
+    '1': 'bg-green-500 text-white',
+    '2': 'bg-lime-500 text-white',
+    '3': 'bg-yellow-500 text-yellow-950',
+    '5': 'bg-amber-500 text-amber-950',
+    '8': 'bg-orange-500 text-white',
+    '13': 'bg-orange-600 text-white',
+    '21': 'bg-red-500 text-white',
+    '40': 'bg-red-600 text-white',
+    '100': 'bg-red-700 text-white',
+  }
+  return badgeColors[value] ?? 'bg-secondary-500 text-white'
+}
 
 /**
  * Close on Escape
@@ -533,6 +593,26 @@ onUnmounted(() => {
 
             <!-- Matrix Display -->
             <div v-show="selectedTab === 'matrix'" class="flex-1 p-6 overflow-y-auto">
+              <!-- Desktop Tab Navigation -->
+              <div class="hidden md:flex gap-2 mb-4">
+                <button
+                  type="button"
+                  class="px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
+                  :class="selectedTab === 'examples' ? 'bg-primary-100 text-primary-700' : 'bg-secondary-100 text-secondary-600'"
+                  @click="selectedTab = 'examples'"
+                >
+                  {{ t('storyExamples.tabs.examples') }}
+                </button>
+                <button
+                  type="button"
+                  class="px-3 py-1.5 text-xs font-medium rounded-lg transition-colors"
+                  :class="selectedTab === 'matrix' ? 'bg-primary-100 text-primary-700' : 'bg-secondary-100 text-secondary-600'"
+                  @click="selectedTab = 'matrix'"
+                >
+                  {{ t('storyExamples.tabs.matrix') }}
+                </button>
+              </div>
+
               <div class="mb-4">
                 <h4 class="text-lg font-bold text-secondary-800">
                   {{ t('storyExamples.matrix.title') }}
@@ -544,17 +624,26 @@ onUnmounted(() => {
 
               <div class="overflow-x-auto">
                 <div class="min-w-[420px]">
+                  <div class="flex items-center text-xs font-medium text-secondary-500 mb-1">
+                    <div class="w-16" />
+                    <div class="flex-1 text-center">
+                      {{ t('storyExamples.matrix.axis.complexity') }}
+                    </div>
+                  </div>
+
                   <div class="grid grid-cols-4 gap-2 text-xs font-medium text-secondary-500 mb-2">
-                    <div />
+                    <div class="text-right pr-2">
+                      {{ t('storyExamples.matrix.axis.risk') }}
+                    </div>
                     <div class="text-center">{{ t('storyExamples.matrix.levels.low') }}</div>
                     <div class="text-center">{{ t('storyExamples.matrix.levels.medium') }}</div>
                     <div class="text-center">{{ t('storyExamples.matrix.levels.high') }}</div>
                   </div>
 
                   <div
-                    v-for="(row, index) in matrixRows"
-                    :key="index"
-                    class="grid grid-cols-4 gap-2 items-stretch"
+                    v-for="(row, rowIndex) in matrixRows"
+                    :key="rowIndex"
+                    class="grid grid-cols-4 gap-2 items-stretch mb-2"
                   >
                     <div class="flex items-center justify-end text-xs font-medium text-secondary-500 pr-2">
                       {{ row.label }}
@@ -562,9 +651,17 @@ onUnmounted(() => {
                     <div
                       v-for="(cell, cellIndex) in row.cells"
                       :key="cellIndex"
-                      class="bg-secondary-50 border border-secondary-100 rounded-lg p-3 text-center text-sm font-semibold text-secondary-800"
+                      class="border border-secondary-200 rounded-lg p-3 flex items-center justify-center gap-2"
+                      :class="matrixCellClasses(rowIndex, cellIndex)"
                     >
-                      {{ cell }}
+                      <span
+                        v-for="val in cell.values"
+                        :key="val"
+                        class="inline-flex items-center justify-center min-w-[2rem] px-2 py-1 text-sm font-bold rounded-lg"
+                        :class="getBadgeClasses(val)"
+                      >
+                        {{ val }}
+                      </span>
                     </div>
                   </div>
                 </div>

@@ -151,21 +151,26 @@
     "matrix": {
       "title": "风险‑复杂度矩阵",
       "subtitle": "根据风险与复杂度的关系推导 Story Points",
+      "axis": {
+        "risk": "风险",
+        "complexity": "复杂度"
+      },
       "levels": {
+        "veryLow": "非常低",
         "low": "低",
         "medium": "中",
         "high": "高"
       },
       "cells": {
-        "lowLow": "0–1",
-        "lowMedium": "2–3",
-        "lowHigh": "5",
+        "lowLow": "0",
+        "lowMedium": "1–2",
+        "lowHigh": "3–5",
         "mediumLow": "2–3",
-        "mediumMedium": "5",
+        "mediumMedium": "5–8",
         "mediumHigh": "8–13",
-        "highLow": "5–8",
-        "highMedium": "13",
-        "highHigh": "21+"
+        "highLow": "13",
+        "highMedium": "21–40",
+        "highHigh": "100"
       },
       "hint": "风险和复杂度越高，点数越高。不确定性高时选择 ?。"
     },

@@ -151,21 +151,26 @@
     "matrix": {
       "title": "Matrice Rischio vs Complessità",
       "subtitle": "Deriva gli story point dal rapporto rischio‑complessità",
+      "axis": {
+        "risk": "Rischio",
+        "complexity": "Complessità"
+      },
       "levels": {
+        "veryLow": "Molto basso",
         "low": "Basso",
         "medium": "Medio",
         "high": "Alto"
       },
       "cells": {
-        "lowLow": "0–1",
-        "lowMedium": "2–3",
-        "lowHigh": "5",
+        "lowLow": "0",
+        "lowMedium": "1–2",
+        "lowHigh": "3–5",
         "mediumLow": "2–3",
-        "mediumMedium": "5",
+        "mediumMedium": "5–8",
         "mediumHigh": "8–13",
-        "highLow": "5–8",
-        "highMedium": "13",
-        "highHigh": "21+"
+        "highLow": "13",
+        "highMedium": "21–40",
+        "highHigh": "100"
       },
       "hint": "Più rischio e complessità sono alti, più alti saranno i punti. In caso di incertezza, scegli ?."
     },
