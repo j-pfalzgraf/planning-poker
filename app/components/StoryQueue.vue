@@ -21,6 +21,8 @@ interface Props {
   isHost: boolean
   /** Session status */
   status: 'waiting' | 'voting' | 'revealed' | 'completed'
+  /** Session ID for integration links */
+  sessionId?: string
 }
 
 const props = defineProps<Props>()
@@ -37,6 +39,10 @@ const emit = defineEmits<{
   nextStory: []
   /** Edit story */
   editStory: [story: IStory]
+  /** Open import modal */
+  openImport: []
+  /** Open integration settings */
+  openIntegrationSettings: []
 }>()
 
 /**
@@ -45,6 +51,21 @@ const emit = defineEmits<{
 const newStoryTitle = ref('')
 const newStoryDescription = ref('')
 const showAddForm = ref(false)
+
+/**
+ * External integrations
+ */
+const { hasAnyIntegration, config: integrationConfig } = useExternalIntegrations()
+
+/**
+ * Get external link for a story (if any)
+ * Note: This is a placeholder - actual storage access should be done via composable
+ */
+function _getExternalLink(_storyId: string): string | null {
+  if (!props.sessionId || !integrationConfig.value.showExternalLinks) return null
+  // External link lookup would go here via composable
+  return null
+}
 
 /**
  * Number of estimated stories
@@ -205,15 +226,38 @@ function handleAddStory(): void {
       </Transition>
 
       <!-- Action Buttons -->
-      <div v-if="!showAddForm" class="flex gap-2">
-        <button
-          type="button"
-          class="btn-secondary flex-1 text-sm"
-          @click="showAddForm = true"
-        >
-          <Icon name="heroicons:plus" class="w-4 h-4 mr-1" />
-          {{ t('storyQueue.addStory') }}
-        </button>
+      <div v-if="!showAddForm" class="flex flex-col gap-2">
+        <div class="flex gap-2">
+          <button
+            type="button"
+            class="btn-secondary flex-1 text-sm"
+            @click="showAddForm = true"
+          >
+            <Icon name="heroicons:plus" class="w-4 h-4 mr-1" />
+            {{ t('storyQueue.addStory') }}
+          </button>
+
+          <!-- Import from Jira/GitHub -->
+          <button
+            type="button"
+            class="btn-secondary text-sm px-3"
+            :title="t('integration.importStories')"
+            @click="emit('openImport')"
+          >
+            <Icon name="heroicons:cloud-arrow-down" class="w-4 h-4" />
+          </button>
+
+          <!-- Integration Settings -->
+          <button
+            type="button"
+            class="btn-secondary text-sm px-3"
+            :class="{ 'text-green-600': hasAnyIntegration }"
+            :title="t('integration.settings')"
+            @click="emit('openIntegrationSettings')"
+          >
+            <Icon name="heroicons:cog-6-tooth" class="w-4 h-4" />
+          </button>
+        </div>
 
         <button
           v-if="hasNextStory && (status === 'revealed' || status === 'waiting')"

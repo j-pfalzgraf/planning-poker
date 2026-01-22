@@ -5,7 +5,7 @@
  * Uses WebSocket for multi-user communication.
  */
 
-import type { ISessionState, PokerValue } from '~/types'
+import type { ISession, ISessionState, PokerValue } from '~/types'
 import type {
     ParticipantJoinedPayload,
     ParticipantLeftPayload,
@@ -24,6 +24,14 @@ interface ExtendedSessionState extends ISessionState {
 }
 
 /**
+ * Check if cards were just revealed (transition from voting to revealed)
+ */
+function wasCardsRevealed(oldSession: ISession | null, newSession: ISession): boolean {
+  if (!oldSession) return false
+  return oldSession.status === 'voting' && newSession.status === 'revealed' && newSession.cardsRevealed
+}
+
+/**
  * Composable for session management with WebSocket
  *
  * @example
@@ -39,6 +47,11 @@ export function useSession() {
     autoConnect: true,
     autoReconnect: true,
   })
+
+  /**
+   * Local stats composable for recording voting results
+   */
+  const { recordVotingResult } = useLocalStats()
 
   /**
    * Reactive session state
@@ -108,6 +121,12 @@ export function useSession() {
     // Session updated
     on<SessionUpdatedPayload>('session:updated', (payload) => {
       if (!state.value.currentParticipant) return
+
+      // Check if cards were just revealed - record stats
+      if (wasCardsRevealed(state.value.session, payload.session) && state.value.joinCode) {
+        const votersOnly = payload.session.participants.filter(p => !p.isObserver)
+        recordVotingResult(payload.session, state.value.joinCode, votersOnly)
+      }
 
       // Get current participant from updated list
       const updatedParticipant = payload.session.participants.find(
@@ -395,9 +414,42 @@ export function useSession() {
 
   /**
    * Starts the next story (host only)
+   * Also triggers story points sync if configured
    */
-  function nextStory(): void {
+  async function nextStory(): Promise<void> {
     if (!state.value.session || !state.value.isHost) return
+
+    // Sync story points before moving to next story (if configured)
+    if (import.meta.client) {
+      const session = state.value.session
+      const currentIndex = session.currentStoryIndex
+      const currentStory = currentIndex >= 0 ? session.storyQueue[currentIndex] : null
+
+      if (currentStory && session.cardsRevealed && currentStory.estimatedValue) {
+        try {
+          const { syncStoryPoints, config } = useExternalIntegrations()
+
+          if (config.value.autoSyncOnNext) {
+            const result = await syncStoryPoints(
+              session.id,
+              currentStory.id,
+              currentStory.estimatedValue
+            )
+
+            if (result.success) {
+              console.log('[Session] Story points synced:', result)
+            }
+            else if (result.error) {
+              console.warn('[Session] Story points sync failed:', result.error)
+            }
+          }
+        }
+        catch (err) {
+          // Integration not available or error - continue anyway
+          console.debug('[Session] Integration sync skipped:', err)
+        }
+      }
+    }
 
     send('story:next', {
       sessionId: state.value.session.id,

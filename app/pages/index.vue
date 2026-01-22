@@ -151,6 +151,14 @@ function switchMode(newMode: 'create' | 'join'): void {
           </div>
 
           <div class="flex items-center gap-4">
+            <NuxtLink
+              to="/stats"
+              class="flex items-center gap-1.5 text-sm text-secondary-600 hover:text-primary-600 transition-colors"
+              :title="t('stats.title')"
+            >
+              <Icon name="heroicons:chart-bar" class="w-5 h-5" />
+              <span class="hidden md:inline">{{ t('stats.title') }}</span>
+            </NuxtLink>
             <LanguageSwitcher />
             <div v-if="session" class="text-sm text-secondary-600">
               {{ t('session.info.sessionLabel') }} <span class="font-medium">{{ session.name }}</span>

@@ -72,4 +72,16 @@ export default defineNuxtConfig({
       fallbackLocale: 'en',
     },
   },
+
+  /**
+   * Runtime Configuration
+   * OAuth credentials for Jira and GitHub integrations
+   */
+  runtimeConfig: {
+    // Server-only (not exposed to client)
+    jiraClientId: process.env.JIRA_CLIENT_ID || '',
+    jiraClientSecret: process.env.JIRA_CLIENT_SECRET || '',
+    githubClientId: process.env.GITHUB_CLIENT_ID || '',
+    githubClientSecret: process.env.GITHUB_CLIENT_SECRET || '',
+  },
 })
