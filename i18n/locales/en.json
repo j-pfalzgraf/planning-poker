@@ -2,7 +2,7 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Agile Estimation Made Easy",
-    "footer": "Built with {heart} and Nuxt 3"
+    "footer": "Built with {heart} and Nuxt 4"
   },
   "connection": {
     "connected": "Connected",
@@ -354,55 +354,6 @@
       "message": "Are you sure you want to delete all saved statistics? This action cannot be undone.",
       "cancel": "Cancel",
       "confirm": "Delete"
-    }
-  },
-  "integration": {
-    "settings": "Integrations",
-    "generalSettings": "Settings",
-    "configured": "Configured",
-    "localStorageHint": "All settings are stored locally in your browser.",
-    "settingsSaved": "Settings saved",
-    "connected": "Connected",
-    "disconnect": "Disconnect",
-    "connectJira": "Connect to Jira",
-    "connectGitHub": "Connect to GitHub",
-    "importStories": "Import Stories",
-    "noIntegration": "No integration connected",
-    "noIntegrationHint": "Connect Jira or GitHub first in settings.",
-    "fetchIssues": "Fetch Issues",
-    "issuesFound": "issues found",
-    "selectAll": "Select all",
-    "clearSelection": "Clear selection",
-    "noIssuesFound": "No issues found",
-    "importSelected": "Import {count} story | Import {count} stories",
-    "limit": "Max results",
-    "autoSyncOnNext": "Auto-sync story points",
-    "autoSyncOnNextHint": "Automatically sync story points to Jira/GitHub when moving to next story",
-    "showExternalLinks": "Show external links",
-    "showExternalLinksHint": "Show links to Jira/GitHub issues in story queue",
-    "saveSettings": "Save Settings",
-    "syncSuccess": "Story points synced successfully",
-    "syncFailed": "Sync failed: {error}",
-    "syncSkipped": "Sync skipped: Non-numeric value",
-    "jira": {
-      "cloudUrl": "Jira Cloud URL",
-      "invalidUrl": "Invalid Jira Cloud URL (must contain atlassian.net)",
-      "storyPointsField": "Story Points Field ID",
-      "fieldIdHint": "Find in Jira Admin > Issues > Custom Fields (e.g., customfield_10016)",
-      "projectKey": "Project Key",
-      "defaultJql": "Default JQL Filter",
-      "jqlFilter": "JQL Filter"
-    },
-    "github": {
-      "owner": "Organization/User",
-      "repo": "Repository",
-      "projectNumber": "GitHub Projects Number",
-      "projectHint": "Optional: For syncing with GitHub Projects v2",
-      "storyPointsField": "Story Points Field ID",
-      "state": "Issue State",
-      "stateOpen": "Open",
-      "stateClosed": "Closed",
-      "stateAll": "All"
     }
   }
 }

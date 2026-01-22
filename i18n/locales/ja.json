@@ -2,7 +2,7 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "アジャイル見積もりをシンプルに",
-    "footer": "{heart} と Nuxt 3 で作成"
+    "footer": "{heart} と Nuxt 4 で作成"
   },
   "connection": {
     "connected": "接続済み",
@@ -354,55 +354,6 @@
       "message": "保存された統計をすべて削除しますか？この操作は元に戻せません。",
       "cancel": "キャンセル",
       "confirm": "削除"
-    }
-  },
-  "integration": {
-    "settings": "連携",
-    "generalSettings": "設定",
-    "configured": "設定済み",
-    "localStorageHint": "すべての設定はブラウザにローカル保存されます。",
-    "settingsSaved": "設定を保存しました",
-    "connected": "接続済み",
-    "disconnect": "切断",
-    "connectJira": "Jira に接続",
-    "connectGitHub": "GitHub に接続",
-    "importStories": "ストーリーをインポート",
-    "noIntegration": "連携が接続されていません",
-    "noIntegrationHint": "まず設定で Jira または GitHub を接続してください。",
-    "fetchIssues": "Issue を取得",
-    "issuesFound": "件の issue を取得",
-    "selectAll": "すべて選択",
-    "clearSelection": "選択を解除",
-    "noIssuesFound": "Issue が見つかりません",
-    "importSelected": "{count} 件のストーリーをインポート | {count} 件のストーリーをインポート",
-    "limit": "最大件数",
-    "autoSyncOnNext": "ストーリーポイントを自動同期",
-    "autoSyncOnNextHint": "次のストーリーに移動する際に Jira/GitHub へ自動同期します",
-    "showExternalLinks": "外部リンクを表示",
-    "showExternalLinksHint": "ストーリーキューに Jira/GitHub の Issue リンクを表示",
-    "saveSettings": "設定を保存",
-    "syncSuccess": "ストーリーポイントを同期しました",
-    "syncFailed": "同期に失敗しました: {error}",
-    "syncSkipped": "同期をスキップ: 数値ではありません",
-    "jira": {
-      "cloudUrl": "Jira Cloud URL",
-      "invalidUrl": "無効な Jira Cloud URL（atlassian.net を含む必要があります）",
-      "storyPointsField": "Story Points フィールド ID",
-      "fieldIdHint": "Jira 管理 > Issues > Custom Fields で確認（例: customfield_10016）",
-      "projectKey": "プロジェクトキー",
-      "defaultJql": "既定の JQL フィルター",
-      "jqlFilter": "JQL フィルター"
-    },
-    "github": {
-      "owner": "組織/ユーザー",
-      "repo": "リポジトリ",
-      "projectNumber": "GitHub Projects 番号",
-      "projectHint": "任意: GitHub Projects v2 と同期する場合",
-      "storyPointsField": "Story Points フィールド ID",
-      "state": "Issue 状態",
-      "stateOpen": "オープン",
-      "stateClosed": "クローズ",
-      "stateAll": "すべて"
     }
   }
 }

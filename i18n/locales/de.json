@@ -2,7 +2,7 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Agile Schätzungen leicht gemacht",
-    "footer": "Entwickelt mit {heart} und Nuxt 3"
+    "footer": "Entwickelt mit {heart} und Nuxt 4"
   },
   "connection": {
     "connected": "Verbunden",
@@ -354,55 +354,6 @@
       "message": "Bist du sicher, dass du alle gespeicherten Statistiken löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
       "cancel": "Abbrechen",
       "confirm": "Löschen"
-    }
-  },
-  "integration": {
-    "settings": "Integrationen",
-    "generalSettings": "Einstellungen",
-    "configured": "Konfiguriert",
-    "localStorageHint": "Alle Einstellungen werden lokal in deinem Browser gespeichert.",
-    "settingsSaved": "Einstellungen gespeichert",
-    "connected": "Verbunden",
-    "disconnect": "Trennen",
-    "connectJira": "Mit Jira verbinden",
-    "connectGitHub": "Mit GitHub verbinden",
-    "importStories": "Storys importieren",
-    "noIntegration": "Keine Integration verbunden",
-    "noIntegrationHint": "Verbinde zuerst Jira oder GitHub in den Einstellungen.",
-    "fetchIssues": "Issues abrufen",
-    "issuesFound": "Issues gefunden",
-    "selectAll": "Alle auswählen",
-    "clearSelection": "Auswahl aufheben",
-    "noIssuesFound": "Keine Issues gefunden",
-    "importSelected": "{count} Story importieren | {count} Storys importieren",
-    "limit": "Max. Ergebnisse",
-    "autoSyncOnNext": "Story Points automatisch synchronisieren",
-    "autoSyncOnNextHint": "Story Points beim Wechsel zur nächsten Story automatisch in Jira/GitHub übertragen",
-    "showExternalLinks": "Externe Links anzeigen",
-    "showExternalLinksHint": "Zeige Links zu Jira/GitHub-Issues in der Story-Queue",
-    "saveSettings": "Einstellungen speichern",
-    "syncSuccess": "Story Points erfolgreich synchronisiert",
-    "syncFailed": "Synchronisierung fehlgeschlagen: {error}",
-    "syncSkipped": "Synchronisierung übersprungen: Nicht-numerischer Wert",
-    "jira": {
-      "cloudUrl": "Jira Cloud URL",
-      "invalidUrl": "Ungültige Jira Cloud URL (muss atlassian.net enthalten)",
-      "storyPointsField": "Story Points Feld-ID",
-      "fieldIdHint": "Zu finden in Jira Admin > Issues > Custom Fields (z.B. customfield_10016)",
-      "projectKey": "Projekt-Schlüssel",
-      "defaultJql": "Standard JQL-Filter",
-      "jqlFilter": "JQL-Filter"
-    },
-    "github": {
-      "owner": "Organisation/Benutzer",
-      "repo": "Repository",
-      "projectNumber": "GitHub Projects Nummer",
-      "projectHint": "Optional: Für die Synchronisierung mit GitHub Projects v2",
-      "storyPointsField": "Story Points Feld-ID",
-      "state": "Issue-Status",
-      "stateOpen": "Offen",
-      "stateClosed": "Geschlossen",
-      "stateAll": "Alle"
     }
   }
 }

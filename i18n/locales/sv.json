@@ -2,7 +2,7 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Agil estimering enklare",
-    "footer": "Byggt med {heart} och Nuxt 3"
+    "footer": "Byggt med {heart} och Nuxt 4"
   },
   "connection": {
     "connected": "Ansluten",
@@ -354,55 +354,6 @@
       "message": "Är du säker på att du vill radera all sparad statistik? Åtgärden kan inte ångras.",
       "cancel": "Avbryt",
       "confirm": "Radera"
-    }
-  },
-  "integration": {
-    "settings": "Integrationer",
-    "generalSettings": "Inställningar",
-    "configured": "Konfigurerad",
-    "localStorageHint": "Alla inställningar lagras lokalt i din webbläsare.",
-    "settingsSaved": "Inställningar sparade",
-    "connected": "Ansluten",
-    "disconnect": "Koppla från",
-    "connectJira": "Anslut Jira",
-    "connectGitHub": "Anslut GitHub",
-    "importStories": "Importera stories",
-    "noIntegration": "Ingen integration ansluten",
-    "noIntegrationHint": "Anslut först Jira eller GitHub i inställningarna.",
-    "fetchIssues": "Hämta issues",
-    "issuesFound": "issues hittades",
-    "selectAll": "Markera alla",
-    "clearSelection": "Rensa markering",
-    "noIssuesFound": "Inga issues hittades",
-    "importSelected": "Importera {count} story | Importera {count} stories",
-    "limit": "Maxresultat",
-    "autoSyncOnNext": "Synka story points automatiskt",
-    "autoSyncOnNextHint": "Synka story points automatiskt till Jira/GitHub när du går vidare till nästa story",
-    "showExternalLinks": "Visa externa länkar",
-    "showExternalLinksHint": "Visa länkar till Jira/GitHub-issues i story-kön",
-    "saveSettings": "Spara inställningar",
-    "syncSuccess": "Story points synkade",
-    "syncFailed": "Synk misslyckades: {error}",
-    "syncSkipped": "Synkning hoppades över: icke-numeriskt värde",
-    "jira": {
-      "cloudUrl": "Jira Cloud-URL",
-      "invalidUrl": "Ogiltig Jira Cloud-URL (måste innehålla atlassian.net)",
-      "storyPointsField": "Story Points-fält-ID",
-      "fieldIdHint": "Finns i Jira Admin > Issues > Custom Fields (t.ex. customfield_10016)",
-      "projectKey": "Projektnyckel",
-      "defaultJql": "Standard JQL-filter",
-      "jqlFilter": "JQL-filter"
-    },
-    "github": {
-      "owner": "Organisation/Användare",
-      "repo": "Repository",
-      "projectNumber": "GitHub Projects-nummer",
-      "projectHint": "Valfritt: för synk mot GitHub Projects v2",
-      "storyPointsField": "Story Points-fält-ID",
-      "state": "Issue-status",
-      "stateOpen": "Öppen",
-      "stateClosed": "Stängd",
-      "stateAll": "Alla"
     }
   }
 }

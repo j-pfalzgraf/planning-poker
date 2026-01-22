@@ -419,38 +419,6 @@ export function useSession() {
   async function nextStory(): Promise<void> {
     if (!state.value.session || !state.value.isHost) return
 
-    // Sync story points before moving to next story (if configured)
-    if (import.meta.client) {
-      const session = state.value.session
-      const currentIndex = session.currentStoryIndex
-      const currentStory = currentIndex >= 0 ? session.storyQueue[currentIndex] : null
-
-      if (currentStory && session.cardsRevealed && currentStory.estimatedValue) {
-        try {
-          const { syncStoryPoints, config } = useExternalIntegrations()
-
-          if (config.value.autoSyncOnNext) {
-            const result = await syncStoryPoints(
-              session.id,
-              currentStory.id,
-              currentStory.estimatedValue
-            )
-
-            if (result.success) {
-              console.log('[Session] Story points synced:', result)
-            }
-            else if (result.error) {
-              console.warn('[Session] Story points sync failed:', result.error)
-            }
-          }
-        }
-        catch (err) {
-          // Integration not available or error - continue anyway
-          console.debug('[Session] Integration sync skipped:', err)
-        }
-      }
-    }
-
     send('story:next', {
       sessionId: state.value.session.id,
     })

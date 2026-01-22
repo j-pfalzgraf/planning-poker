@@ -2,7 +2,7 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Estimación ágil simplificada",
-    "footer": "Creado con {heart} y Nuxt 3"
+    "footer": "Creado con {heart} y Nuxt 4"
   },
   "connection": {
     "connected": "Conectado",
@@ -354,55 +354,6 @@
       "message": "¿Seguro que deseas eliminar todas las estadísticas guardadas? Esta acción no se puede deshacer.",
       "cancel": "Cancelar",
       "confirm": "Eliminar"
-    }
-  },
-  "integration": {
-    "settings": "Integraciones",
-    "generalSettings": "Configuración",
-    "configured": "Configurado",
-    "localStorageHint": "Todas las configuraciones se guardan localmente en tu navegador.",
-    "settingsSaved": "Configuración guardada",
-    "connected": "Conectado",
-    "disconnect": "Desconectar",
-    "connectJira": "Conectar con Jira",
-    "connectGitHub": "Conectar con GitHub",
-    "importStories": "Importar historias",
-    "noIntegration": "Ninguna integración conectada",
-    "noIntegrationHint": "Conecta Jira o GitHub primero en la configuración.",
-    "fetchIssues": "Obtener issues",
-    "issuesFound": "issues encontrados",
-    "selectAll": "Seleccionar todo",
-    "clearSelection": "Limpiar selección",
-    "noIssuesFound": "No se encontraron issues",
-    "importSelected": "Importar {count} historia | Importar {count} historias",
-    "limit": "Máx. resultados",
-    "autoSyncOnNext": "Sincronizar automáticamente story points",
-    "autoSyncOnNextHint": "Sincroniza automáticamente los story points en Jira/GitHub al pasar a la siguiente historia",
-    "showExternalLinks": "Mostrar enlaces externos",
-    "showExternalLinksHint": "Mostrar enlaces a issues de Jira/GitHub en la cola de historias",
-    "saveSettings": "Guardar configuración",
-    "syncSuccess": "Story points sincronizados correctamente",
-    "syncFailed": "Sincronización fallida: {error}",
-    "syncSkipped": "Sincronización omitida: valor no numérico",
-    "jira": {
-      "cloudUrl": "URL de Jira Cloud",
-      "invalidUrl": "URL de Jira Cloud no válida (debe contener atlassian.net)",
-      "storyPointsField": "ID del campo Story Points",
-      "fieldIdHint": "Se encuentra en Jira Admin > Issues > Custom Fields (p. ej., customfield_10016)",
-      "projectKey": "Clave del proyecto",
-      "defaultJql": "Filtro JQL predeterminado",
-      "jqlFilter": "Filtro JQL"
-    },
-    "github": {
-      "owner": "Organización/Usuario",
-      "repo": "Repositorio",
-      "projectNumber": "Número de GitHub Projects",
-      "projectHint": "Opcional: Para sincronizar con GitHub Projects v2",
-      "storyPointsField": "ID del campo Story Points",
-      "state": "Estado del issue",
-      "stateOpen": "Abierto",
-      "stateClosed": "Cerrado",
-      "stateAll": "Todos"
     }
   }
 }
