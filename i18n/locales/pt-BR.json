@@ -303,5 +303,106 @@
         }
       }
     }
+  },
+  "stats": {
+    "title": "Estatísticas",
+    "subtitle": "Visão geral das suas sessões de Planning Poker",
+    "backToSession": "Voltar à sessão",
+    "noData": "Sem dados disponíveis",
+    "clearStats": "Limpar dados",
+    "filter": {
+      "allSessions": "Todas as sessões"
+    },
+    "quickStats": {
+      "title": "Resumo rápido",
+      "totalStories": "Total de histórias",
+      "averagePoints": "Média de story points",
+      "consensusRate": "Taxa de consenso",
+      "avgVoters": "Média de votantes"
+    },
+    "meetingStatus": {
+      "title": "Status da reunião",
+      "status": "Status",
+      "currentStory": "História atual",
+      "noStory": "Nenhuma história selecionada",
+      "participation": "Participação",
+      "participants": "Participantes"
+    },
+    "charts": {
+      "title": "Gráficos",
+      "pointsOverTime": "Story points ao longo do tempo",
+      "cardFrequency": "Frequência das cartas",
+      "consensusDistribution": "Distribuição de consenso",
+      "storyPoints": "Story points",
+      "votes": "Votos",
+      "consensus": "Consenso",
+      "noConsensus": "Sem consenso",
+      "consensusRate": "Consenso"
+    },
+    "recentStories": {
+      "title": "Histórias recentes",
+      "noStories": "Nenhuma história estimada ainda"
+    },
+    "time": {
+      "justNow": "Agora mesmo",
+      "minutesAgo": "{count} minuto atrás | {count} minutos atrás",
+      "hoursAgo": "{count} hora atrás | {count} horas atrás",
+      "daysAgo": "{count} dia atrás | {count} dias atrás"
+    },
+    "clearConfirm": {
+      "title": "Limpar estatísticas",
+      "message": "Tem certeza de que deseja excluir todas as estatísticas salvas? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Excluir"
+    }
+  },
+  "integration": {
+    "settings": "Integrações",
+    "generalSettings": "Configurações",
+    "configured": "Configurado",
+    "localStorageHint": "Todas as configurações são armazenadas localmente no seu navegador.",
+    "settingsSaved": "Configurações salvas",
+    "connected": "Conectado",
+    "disconnect": "Desconectar",
+    "connectJira": "Conectar ao Jira",
+    "connectGitHub": "Conectar ao GitHub",
+    "importStories": "Importar histórias",
+    "noIntegration": "Nenhuma integração conectada",
+    "noIntegrationHint": "Conecte Jira ou GitHub primeiro nas configurações.",
+    "fetchIssues": "Buscar issues",
+    "issuesFound": "issues encontradas",
+    "selectAll": "Selecionar tudo",
+    "clearSelection": "Limpar seleção",
+    "noIssuesFound": "Nenhuma issue encontrada",
+    "importSelected": "Importar {count} história | Importar {count} histórias",
+    "limit": "Máx. resultados",
+    "autoSyncOnNext": "Sincronizar story points automaticamente",
+    "autoSyncOnNextHint": "Sincronize automaticamente os story points no Jira/GitHub ao passar para a próxima história",
+    "showExternalLinks": "Mostrar links externos",
+    "showExternalLinksHint": "Mostrar links para issues do Jira/GitHub na fila de histórias",
+    "saveSettings": "Salvar configurações",
+    "syncSuccess": "Story points sincronizados com sucesso",
+    "syncFailed": "Falha na sincronização: {error}",
+    "syncSkipped": "Sincronização ignorada: valor não numérico",
+    "jira": {
+      "cloudUrl": "URL do Jira Cloud",
+      "invalidUrl": "URL do Jira Cloud inválida (deve conter atlassian.net)",
+      "storyPointsField": "ID do campo Story Points",
+      "fieldIdHint": "Encontre em Jira Admin > Issues > Custom Fields (ex.: customfield_10016)",
+      "projectKey": "Chave do projeto",
+      "defaultJql": "Filtro JQL padrão",
+      "jqlFilter": "Filtro JQL"
+    },
+    "github": {
+      "owner": "Organização/Usuário",
+      "repo": "Repositório",
+      "projectNumber": "Número do GitHub Projects",
+      "projectHint": "Opcional: para sincronizar com GitHub Projects v2",
+      "storyPointsField": "ID do campo Story Points",
+      "state": "Status da issue",
+      "stateOpen": "Aberta",
+      "stateClosed": "Fechada",
+      "stateAll": "Todas"
+    }
   }
 }

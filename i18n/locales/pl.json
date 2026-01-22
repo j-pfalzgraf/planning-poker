@@ -303,5 +303,106 @@
         }
       }
     }
+  },
+  "stats": {
+    "title": "Statystyki",
+    "subtitle": "Przegląd Twoich sesji Planning Poker",
+    "backToSession": "Wróć do sesji",
+    "noData": "Brak danych",
+    "clearStats": "Wyczyść dane",
+    "filter": {
+      "allSessions": "Wszystkie sesje"
+    },
+    "quickStats": {
+      "title": "Szybkie statystyki",
+      "totalStories": "Łącznie historyjek",
+      "averagePoints": "Śr. story points",
+      "consensusRate": "Wskaźnik konsensusu",
+      "avgVoters": "Śr. liczba głosujących"
+    },
+    "meetingStatus": {
+      "title": "Status spotkania",
+      "status": "Status",
+      "currentStory": "Aktualna historyjka",
+      "noStory": "Nie wybrano historyjki",
+      "participation": "Udział",
+      "participants": "Uczestnicy"
+    },
+    "charts": {
+      "title": "Wykresy",
+      "pointsOverTime": "Story points w czasie",
+      "cardFrequency": "Częstotliwość kart",
+      "consensusDistribution": "Rozkład konsensusu",
+      "storyPoints": "Story points",
+      "votes": "Głosy",
+      "consensus": "Konsensus",
+      "noConsensus": "Brak konsensusu",
+      "consensusRate": "Konsensus"
+    },
+    "recentStories": {
+      "title": "Ostatnie historyjki",
+      "noStories": "Jeszcze nie oszacowano żadnych historyjek"
+    },
+    "time": {
+      "justNow": "Przed chwilą",
+      "minutesAgo": "{count} minutę temu | {count} minut temu",
+      "hoursAgo": "{count} godzinę temu | {count} godzin temu",
+      "daysAgo": "{count} dzień temu | {count} dni temu"
+    },
+    "clearConfirm": {
+      "title": "Wyczyść statystyki",
+      "message": "Czy na pewno chcesz usunąć wszystkie zapisane statystyki? Tej akcji nie można cofnąć.",
+      "cancel": "Anuluj",
+      "confirm": "Usuń"
+    }
+  },
+  "integration": {
+    "settings": "Integracje",
+    "generalSettings": "Ustawienia",
+    "configured": "Skonfigurowane",
+    "localStorageHint": "Wszystkie ustawienia są zapisywane lokalnie w Twojej przeglądarce.",
+    "settingsSaved": "Ustawienia zapisane",
+    "connected": "Połączono",
+    "disconnect": "Rozłącz",
+    "connectJira": "Połącz z Jira",
+    "connectGitHub": "Połącz z GitHub",
+    "importStories": "Importuj historyjki",
+    "noIntegration": "Brak podłączonej integracji",
+    "noIntegrationHint": "Najpierw połącz Jira lub GitHub w ustawieniach.",
+    "fetchIssues": "Pobierz issues",
+    "issuesFound": "issues znaleziono",
+    "selectAll": "Zaznacz wszystko",
+    "clearSelection": "Wyczyść zaznaczenie",
+    "noIssuesFound": "Nie znaleziono issues",
+    "importSelected": "Importuj {count} historyjkę | Importuj {count} historyjek",
+    "limit": "Maks. wyniki",
+    "autoSyncOnNext": "Automatyczna synchronizacja story points",
+    "autoSyncOnNextHint": "Automatycznie synchronizuj story points do Jira/GitHub przy przejściu do następnej historyjki",
+    "showExternalLinks": "Pokaż linki zewnętrzne",
+    "showExternalLinksHint": "Pokaż linki do issues Jira/GitHub w kolejce historyjek",
+    "saveSettings": "Zapisz ustawienia",
+    "syncSuccess": "Story points zsynchronizowane pomyślnie",
+    "syncFailed": "Synchronizacja nieudana: {error}",
+    "syncSkipped": "Synchronizacja pominięta: wartość nienumeryczna",
+    "jira": {
+      "cloudUrl": "URL Jira Cloud",
+      "invalidUrl": "Nieprawidłowy URL Jira Cloud (musi zawierać atlassian.net)",
+      "storyPointsField": "ID pola Story Points",
+      "fieldIdHint": "Znajdziesz w Jira Admin > Issues > Custom Fields (np. customfield_10016)",
+      "projectKey": "Klucz projektu",
+      "defaultJql": "Domyślny filtr JQL",
+      "jqlFilter": "Filtr JQL"
+    },
+    "github": {
+      "owner": "Organizacja/Użytkownik",
+      "repo": "Repozytorium",
+      "projectNumber": "Numer GitHub Projects",
+      "projectHint": "Opcjonalnie: do synchronizacji z GitHub Projects v2",
+      "storyPointsField": "ID pola Story Points",
+      "state": "Status issue",
+      "stateOpen": "Otwarte",
+      "stateClosed": "Zamknięte",
+      "stateAll": "Wszystkie"
+    }
   }
 }

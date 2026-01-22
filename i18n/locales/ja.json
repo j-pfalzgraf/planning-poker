@@ -303,5 +303,106 @@
         }
       }
     }
+  },
+  "stats": {
+    "title": "統計",
+    "subtitle": "Planning Poker セッションの概要",
+    "backToSession": "セッションに戻る",
+    "noData": "データがありません",
+    "clearStats": "データを削除",
+    "filter": {
+      "allSessions": "すべてのセッション"
+    },
+    "quickStats": {
+      "title": "クイック統計",
+      "totalStories": "合計ストーリー数",
+      "averagePoints": "平均ストーリーポイント",
+      "consensusRate": "合意率",
+      "avgVoters": "平均投票者数"
+    },
+    "meetingStatus": {
+      "title": "ミーティング状況",
+      "status": "ステータス",
+      "currentStory": "現在のストーリー",
+      "noStory": "ストーリーが選択されていません",
+      "participation": "参加状況",
+      "participants": "参加者"
+    },
+    "charts": {
+      "title": "グラフ",
+      "pointsOverTime": "ストーリーポイントの推移",
+      "cardFrequency": "カード頻度",
+      "consensusDistribution": "合意分布",
+      "storyPoints": "ストーリーポイント",
+      "votes": "票数",
+      "consensus": "合意",
+      "noConsensus": "合意なし",
+      "consensusRate": "合意"
+    },
+    "recentStories": {
+      "title": "最近のストーリー",
+      "noStories": "まだストーリーが見積もられていません"
+    },
+    "time": {
+      "justNow": "たった今",
+      "minutesAgo": "{count} 分前 | {count} 分前",
+      "hoursAgo": "{count} 時間前 | {count} 時間前",
+      "daysAgo": "{count} 日前 | {count} 日前"
+    },
+    "clearConfirm": {
+      "title": "統計を削除",
+      "message": "保存された統計をすべて削除しますか？この操作は元に戻せません。",
+      "cancel": "キャンセル",
+      "confirm": "削除"
+    }
+  },
+  "integration": {
+    "settings": "連携",
+    "generalSettings": "設定",
+    "configured": "設定済み",
+    "localStorageHint": "すべての設定はブラウザにローカル保存されます。",
+    "settingsSaved": "設定を保存しました",
+    "connected": "接続済み",
+    "disconnect": "切断",
+    "connectJira": "Jira に接続",
+    "connectGitHub": "GitHub に接続",
+    "importStories": "ストーリーをインポート",
+    "noIntegration": "連携が接続されていません",
+    "noIntegrationHint": "まず設定で Jira または GitHub を接続してください。",
+    "fetchIssues": "Issue を取得",
+    "issuesFound": "件の issue を取得",
+    "selectAll": "すべて選択",
+    "clearSelection": "選択を解除",
+    "noIssuesFound": "Issue が見つかりません",
+    "importSelected": "{count} 件のストーリーをインポート | {count} 件のストーリーをインポート",
+    "limit": "最大件数",
+    "autoSyncOnNext": "ストーリーポイントを自動同期",
+    "autoSyncOnNextHint": "次のストーリーに移動する際に Jira/GitHub へ自動同期します",
+    "showExternalLinks": "外部リンクを表示",
+    "showExternalLinksHint": "ストーリーキューに Jira/GitHub の Issue リンクを表示",
+    "saveSettings": "設定を保存",
+    "syncSuccess": "ストーリーポイントを同期しました",
+    "syncFailed": "同期に失敗しました: {error}",
+    "syncSkipped": "同期をスキップ: 数値ではありません",
+    "jira": {
+      "cloudUrl": "Jira Cloud URL",
+      "invalidUrl": "無効な Jira Cloud URL（atlassian.net を含む必要があります）",
+      "storyPointsField": "Story Points フィールド ID",
+      "fieldIdHint": "Jira 管理 > Issues > Custom Fields で確認（例: customfield_10016）",
+      "projectKey": "プロジェクトキー",
+      "defaultJql": "既定の JQL フィルター",
+      "jqlFilter": "JQL フィルター"
+    },
+    "github": {
+      "owner": "組織/ユーザー",
+      "repo": "リポジトリ",
+      "projectNumber": "GitHub Projects 番号",
+      "projectHint": "任意: GitHub Projects v2 と同期する場合",
+      "storyPointsField": "Story Points フィールド ID",
+      "state": "Issue 状態",
+      "stateOpen": "オープン",
+      "stateClosed": "クローズ",
+      "stateAll": "すべて"
+    }
   }
 }

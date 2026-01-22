@@ -303,5 +303,106 @@
         }
       }
     }
+  },
+  "stats": {
+    "title": "Statistieken",
+    "subtitle": "Overzicht van je Planning Poker-sessies",
+    "backToSession": "Terug naar sessie",
+    "noData": "Geen gegevens beschikbaar",
+    "clearStats": "Gegevens wissen",
+    "filter": {
+      "allSessions": "Alle sessies"
+    },
+    "quickStats": {
+      "title": "Snelle stats",
+      "totalStories": "Stories totaal",
+      "averagePoints": "Gem. story points",
+      "consensusRate": "Consensuspercentage",
+      "avgVoters": "Gem. stemmers"
+    },
+    "meetingStatus": {
+      "title": "Meetingstatus",
+      "status": "Status",
+      "currentStory": "Huidige story",
+      "noStory": "Geen story geselecteerd",
+      "participation": "Deelname",
+      "participants": "Deelnemers"
+    },
+    "charts": {
+      "title": "Grafieken",
+      "pointsOverTime": "Story points in de tijd",
+      "cardFrequency": "Kaartfrequentie",
+      "consensusDistribution": "Consensusverdeling",
+      "storyPoints": "Story points",
+      "votes": "Stemmen",
+      "consensus": "Consensus",
+      "noConsensus": "Geen consensus",
+      "consensusRate": "Consensus"
+    },
+    "recentStories": {
+      "title": "Recente stories",
+      "noStories": "Nog geen stories geschat"
+    },
+    "time": {
+      "justNow": "Zojuist",
+      "minutesAgo": "{count} minuut geleden | {count} minuten geleden",
+      "hoursAgo": "{count} uur geleden | {count} uur geleden",
+      "daysAgo": "{count} dag geleden | {count} dagen geleden"
+    },
+    "clearConfirm": {
+      "title": "Statistieken wissen",
+      "message": "Weet je zeker dat je alle opgeslagen statistieken wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "cancel": "Annuleren",
+      "confirm": "Verwijderen"
+    }
+  },
+  "integration": {
+    "settings": "Integraties",
+    "generalSettings": "Instellingen",
+    "configured": "Geconfigureerd",
+    "localStorageHint": "Alle instellingen worden lokaal in je browser opgeslagen.",
+    "settingsSaved": "Instellingen opgeslagen",
+    "connected": "Verbonden",
+    "disconnect": "Verbinding verbreken",
+    "connectJira": "Verbinden met Jira",
+    "connectGitHub": "Verbinden met GitHub",
+    "importStories": "Stories importeren",
+    "noIntegration": "Geen integratie verbonden",
+    "noIntegrationHint": "Verbind eerst Jira of GitHub in de instellingen.",
+    "fetchIssues": "Issues ophalen",
+    "issuesFound": "issues gevonden",
+    "selectAll": "Alles selecteren",
+    "clearSelection": "Selectie wissen",
+    "noIssuesFound": "Geen issues gevonden",
+    "importSelected": "{count} story importeren | {count} stories importeren",
+    "limit": "Max. resultaten",
+    "autoSyncOnNext": "Story points automatisch synchroniseren",
+    "autoSyncOnNextHint": "Synchroniseer story points automatisch met Jira/GitHub bij volgende story",
+    "showExternalLinks": "Externe links tonen",
+    "showExternalLinksHint": "Toon links naar Jira/GitHub-issues in de story-queue",
+    "saveSettings": "Instellingen opslaan",
+    "syncSuccess": "Story points succesvol gesynchroniseerd",
+    "syncFailed": "Synchronisatie mislukt: {error}",
+    "syncSkipped": "Synchronisatie overgeslagen: niet-numerieke waarde",
+    "jira": {
+      "cloudUrl": "Jira Cloud-URL",
+      "invalidUrl": "Ongeldige Jira Cloud-URL (moet atlassian.net bevatten)",
+      "storyPointsField": "Story Points-veld-ID",
+      "fieldIdHint": "Te vinden in Jira Admin > Issues > Custom Fields (bijv. customfield_10016)",
+      "projectKey": "Projectsleutel",
+      "defaultJql": "Standaard JQL-filter",
+      "jqlFilter": "JQL-filter"
+    },
+    "github": {
+      "owner": "Organisatie/Gebruiker",
+      "repo": "Repository",
+      "projectNumber": "GitHub Projects-nummer",
+      "projectHint": "Optioneel: voor synchronisatie met GitHub Projects v2",
+      "storyPointsField": "Story Points-veld-ID",
+      "state": "Issue-status",
+      "stateOpen": "Open",
+      "stateClosed": "Gesloten",
+      "stateAll": "Alle"
+    }
   }
 }

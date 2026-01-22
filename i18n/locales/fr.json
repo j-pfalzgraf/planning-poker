@@ -303,5 +303,106 @@
         }
       }
     }
+  },
+  "stats": {
+    "title": "Statistiques",
+    "subtitle": "Aperçu de vos sessions Planning Poker",
+    "backToSession": "Retour à la session",
+    "noData": "Aucune donnée disponible",
+    "clearStats": "Effacer les données",
+    "filter": {
+      "allSessions": "Toutes les sessions"
+    },
+    "quickStats": {
+      "title": "Aperçu rapide",
+      "totalStories": "Stories totales",
+      "averagePoints": "Points moyens",
+      "consensusRate": "Taux de consensus",
+      "avgVoters": "Moy. de votants"
+    },
+    "meetingStatus": {
+      "title": "Statut de la réunion",
+      "status": "Statut",
+      "currentStory": "Story en cours",
+      "noStory": "Aucune story sélectionnée",
+      "participation": "Participation",
+      "participants": "Participants"
+    },
+    "charts": {
+      "title": "Graphiques",
+      "pointsOverTime": "Story points dans le temps",
+      "cardFrequency": "Fréquence des cartes",
+      "consensusDistribution": "Répartition du consensus",
+      "storyPoints": "Story points",
+      "votes": "Votes",
+      "consensus": "Consensus",
+      "noConsensus": "Pas de consensus",
+      "consensusRate": "Consensus"
+    },
+    "recentStories": {
+      "title": "Stories récentes",
+      "noStories": "Aucune story estimée pour le moment"
+    },
+    "time": {
+      "justNow": "À l'instant",
+      "minutesAgo": "Il y a {count} minute | Il y a {count} minutes",
+      "hoursAgo": "Il y a {count} heure | Il y a {count} heures",
+      "daysAgo": "Il y a {count} jour | Il y a {count} jours"
+    },
+    "clearConfirm": {
+      "title": "Effacer les statistiques",
+      "message": "Êtes‑vous sûr de vouloir supprimer toutes les statistiques enregistrées ? Cette action est irréversible.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
+    }
+  },
+  "integration": {
+    "settings": "Intégrations",
+    "generalSettings": "Paramètres",
+    "configured": "Configuré",
+    "localStorageHint": "Tous les paramètres sont stockés localement dans votre navigateur.",
+    "settingsSaved": "Paramètres enregistrés",
+    "connected": "Connecté",
+    "disconnect": "Déconnecter",
+    "connectJira": "Connecter Jira",
+    "connectGitHub": "Connecter GitHub",
+    "importStories": "Importer des stories",
+    "noIntegration": "Aucune intégration connectée",
+    "noIntegrationHint": "Connectez d'abord Jira ou GitHub dans les paramètres.",
+    "fetchIssues": "Récupérer les issues",
+    "issuesFound": "issues trouvées",
+    "selectAll": "Tout sélectionner",
+    "clearSelection": "Effacer la sélection",
+    "noIssuesFound": "Aucune issue trouvée",
+    "importSelected": "Importer {count} story | Importer {count} stories",
+    "limit": "Résultats max",
+    "autoSyncOnNext": "Synchroniser automatiquement les story points",
+    "autoSyncOnNextHint": "Synchroniser automatiquement les story points vers Jira/GitHub lors du passage à la story suivante",
+    "showExternalLinks": "Afficher les liens externes",
+    "showExternalLinksHint": "Afficher les liens vers les issues Jira/GitHub dans la file d'histoires",
+    "saveSettings": "Enregistrer les paramètres",
+    "syncSuccess": "Story points synchronisés avec succès",
+    "syncFailed": "Synchronisation échouée : {error}",
+    "syncSkipped": "Synchronisation ignorée : valeur non numérique",
+    "jira": {
+      "cloudUrl": "URL Jira Cloud",
+      "invalidUrl": "URL Jira Cloud invalide (doit contenir atlassian.net)",
+      "storyPointsField": "ID du champ Story Points",
+      "fieldIdHint": "À trouver dans Jira Admin > Issues > Custom Fields (ex. customfield_10016)",
+      "projectKey": "Clé du projet",
+      "defaultJql": "Filtre JQL par défaut",
+      "jqlFilter": "Filtre JQL"
+    },
+    "github": {
+      "owner": "Organisation/Utilisateur",
+      "repo": "Dépôt",
+      "projectNumber": "Numéro GitHub Projects",
+      "projectHint": "Optionnel : pour la synchronisation avec GitHub Projects v2",
+      "storyPointsField": "ID du champ Story Points",
+      "state": "État de l'issue",
+      "stateOpen": "Ouverte",
+      "stateClosed": "Fermée",
+      "stateAll": "Toutes"
+    }
   }
 }

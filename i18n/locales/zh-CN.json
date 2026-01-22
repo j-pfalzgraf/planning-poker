@@ -303,5 +303,106 @@
         }
       }
     }
+  },
+  "stats": {
+    "title": "统计",
+    "subtitle": "你的 Planning Poker 会话概览",
+    "backToSession": "返回会话",
+    "noData": "暂无数据",
+    "clearStats": "清除数据",
+    "filter": {
+      "allSessions": "所有会话"
+    },
+    "quickStats": {
+      "title": "快速统计",
+      "totalStories": "故事总数",
+      "averagePoints": "平均 Story Points",
+      "consensusRate": "共识率",
+      "avgVoters": "平均投票人数"
+    },
+    "meetingStatus": {
+      "title": "会议状态",
+      "status": "状态",
+      "currentStory": "当前故事",
+      "noStory": "未选择故事",
+      "participation": "参与度",
+      "participants": "参与者"
+    },
+    "charts": {
+      "title": "图表",
+      "pointsOverTime": "Story Points 随时间变化",
+      "cardFrequency": "卡牌频率",
+      "consensusDistribution": "共识分布",
+      "storyPoints": "Story Points",
+      "votes": "票数",
+      "consensus": "共识",
+      "noConsensus": "无共识",
+      "consensusRate": "共识"
+    },
+    "recentStories": {
+      "title": "最近故事",
+      "noStories": "还没有估算过的故事"
+    },
+    "time": {
+      "justNow": "刚刚",
+      "minutesAgo": "{count} 分钟前 | {count} 分钟前",
+      "hoursAgo": "{count} 小时前 | {count} 小时前",
+      "daysAgo": "{count} 天前 | {count} 天前"
+    },
+    "clearConfirm": {
+      "title": "清除统计",
+      "message": "确定要删除所有已保存的统计数据吗？此操作无法撤销。",
+      "cancel": "取消",
+      "confirm": "删除"
+    }
+  },
+  "integration": {
+    "settings": "集成",
+    "generalSettings": "设置",
+    "configured": "已配置",
+    "localStorageHint": "所有设置都会保存在你的浏览器本地。",
+    "settingsSaved": "设置已保存",
+    "connected": "已连接",
+    "disconnect": "断开连接",
+    "connectJira": "连接 Jira",
+    "connectGitHub": "连接 GitHub",
+    "importStories": "导入故事",
+    "noIntegration": "未连接任何集成",
+    "noIntegrationHint": "请先在设置中连接 Jira 或 GitHub。",
+    "fetchIssues": "获取 Issues",
+    "issuesFound": "已找到 issues",
+    "selectAll": "全选",
+    "clearSelection": "清除选择",
+    "noIssuesFound": "未找到 issues",
+    "importSelected": "导入 {count} 个故事 | 导入 {count} 个故事",
+    "limit": "最大结果数",
+    "autoSyncOnNext": "自动同步 Story Points",
+    "autoSyncOnNextHint": "切换到下一个故事时自动同步到 Jira/GitHub",
+    "showExternalLinks": "显示外部链接",
+    "showExternalLinksHint": "在故事队列中显示 Jira/GitHub issues 链接",
+    "saveSettings": "保存设置",
+    "syncSuccess": "Story Points 同步成功",
+    "syncFailed": "同步失败：{error}",
+    "syncSkipped": "同步已跳过：非数字值",
+    "jira": {
+      "cloudUrl": "Jira Cloud URL",
+      "invalidUrl": "Jira Cloud URL 无效（必须包含 atlassian.net）",
+      "storyPointsField": "Story Points 字段 ID",
+      "fieldIdHint": "在 Jira Admin > Issues > Custom Fields 中查找（例如 customfield_10016）",
+      "projectKey": "项目键",
+      "defaultJql": "默认 JQL 过滤器",
+      "jqlFilter": "JQL 过滤器"
+    },
+    "github": {
+      "owner": "组织/用户",
+      "repo": "仓库",
+      "projectNumber": "GitHub Projects 编号",
+      "projectHint": "可选：用于与 GitHub Projects v2 同步",
+      "storyPointsField": "Story Points 字段 ID",
+      "state": "Issue 状态",
+      "stateOpen": "开放",
+      "stateClosed": "已关闭",
+      "stateAll": "全部"
+    }
   }
 }

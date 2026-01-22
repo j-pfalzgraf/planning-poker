@@ -303,5 +303,106 @@
         }
       }
     }
+  },
+  "stats": {
+    "title": "Statistiche",
+    "subtitle": "Panoramica delle tue sessioni Planning Poker",
+    "backToSession": "Torna alla sessione",
+    "noData": "Nessun dato disponibile",
+    "clearStats": "Cancella dati",
+    "filter": {
+      "allSessions": "Tutte le sessioni"
+    },
+    "quickStats": {
+      "title": "Statistiche rapide",
+      "totalStories": "Storie totali",
+      "averagePoints": "Media story points",
+      "consensusRate": "Tasso di consenso",
+      "avgVoters": "Media votanti"
+    },
+    "meetingStatus": {
+      "title": "Stato meeting",
+      "status": "Stato",
+      "currentStory": "Storia attuale",
+      "noStory": "Nessuna storia selezionata",
+      "participation": "Partecipazione",
+      "participants": "Partecipanti"
+    },
+    "charts": {
+      "title": "Grafici",
+      "pointsOverTime": "Story points nel tempo",
+      "cardFrequency": "Frequenza carte",
+      "consensusDistribution": "Distribuzione consenso",
+      "storyPoints": "Story points",
+      "votes": "Voti",
+      "consensus": "Consenso",
+      "noConsensus": "Nessun consenso",
+      "consensusRate": "Consenso"
+    },
+    "recentStories": {
+      "title": "Storie recenti",
+      "noStories": "Nessuna storia stimata finora"
+    },
+    "time": {
+      "justNow": "Proprio ora",
+      "minutesAgo": "{count} minuto fa | {count} minuti fa",
+      "hoursAgo": "{count} ora fa | {count} ore fa",
+      "daysAgo": "{count} giorno fa | {count} giorni fa"
+    },
+    "clearConfirm": {
+      "title": "Cancella statistiche",
+      "message": "Sei sicuro di voler eliminare tutte le statistiche salvate? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina"
+    }
+  },
+  "integration": {
+    "settings": "Integrazioni",
+    "generalSettings": "Impostazioni",
+    "configured": "Configurato",
+    "localStorageHint": "Tutte le impostazioni vengono salvate localmente nel tuo browser.",
+    "settingsSaved": "Impostazioni salvate",
+    "connected": "Connesso",
+    "disconnect": "Disconnetti",
+    "connectJira": "Connetti Jira",
+    "connectGitHub": "Connetti GitHub",
+    "importStories": "Importa storie",
+    "noIntegration": "Nessuna integrazione connessa",
+    "noIntegrationHint": "Connetti prima Jira o GitHub nelle impostazioni.",
+    "fetchIssues": "Recupera issue",
+    "issuesFound": "issue trovate",
+    "selectAll": "Seleziona tutto",
+    "clearSelection": "Cancella selezione",
+    "noIssuesFound": "Nessuna issue trovata",
+    "importSelected": "Importa {count} storia | Importa {count} storie",
+    "limit": "Risultati max",
+    "autoSyncOnNext": "Sincronizza automaticamente gli story points",
+    "autoSyncOnNextHint": "Sincronizza automaticamente gli story points su Jira/GitHub passando alla storia successiva",
+    "showExternalLinks": "Mostra link esterni",
+    "showExternalLinksHint": "Mostra link alle issue Jira/GitHub nella coda delle storie",
+    "saveSettings": "Salva impostazioni",
+    "syncSuccess": "Story points sincronizzati con successo",
+    "syncFailed": "Sincronizzazione fallita: {error}",
+    "syncSkipped": "Sincronizzazione saltata: valore non numerico",
+    "jira": {
+      "cloudUrl": "URL Jira Cloud",
+      "invalidUrl": "URL Jira Cloud non valido (deve contenere atlassian.net)",
+      "storyPointsField": "ID campo Story Points",
+      "fieldIdHint": "Si trova in Jira Admin > Issues > Custom Fields (es. customfield_10016)",
+      "projectKey": "Chiave progetto",
+      "defaultJql": "Filtro JQL predefinito",
+      "jqlFilter": "Filtro JQL"
+    },
+    "github": {
+      "owner": "Organizzazione/Utente",
+      "repo": "Repository",
+      "projectNumber": "Numero GitHub Projects",
+      "projectHint": "Opzionale: per sincronizzazione con GitHub Projects v2",
+      "storyPointsField": "ID campo Story Points",
+      "state": "Stato issue",
+      "stateOpen": "Aperta",
+      "stateClosed": "Chiusa",
+      "stateAll": "Tutte"
+    }
   }
 }
