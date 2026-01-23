@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Stime agili semplificate",
-    "footer": "Creato con {heart} e Nuxt 3"
+    "footer": "Creato con {heart} e Nuxt 4"
+  },
+  "nav": {
+    "back": "Indietro"
   },
   "connection": {
     "connected": "Connesso",
@@ -302,6 +305,58 @@
           "description": "Questa storia non viene stimata o è necessaria una pausa."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Statistiche",
+    "subtitle": "Panoramica delle tue sessioni Planning Poker",
+    "backToSession": "Torna alla sessione",
+    "noData": "Nessun dato disponibile",
+    "clearStats": "Cancella dati",
+    "filter": {
+      "allSessions": "Tutte le sessioni"
+    },
+    "quickStats": {
+      "title": "Statistiche rapide",
+      "totalStories": "Storie totali",
+      "averagePoints": "Media story points",
+      "consensusRate": "Tasso di consenso",
+      "avgVoters": "Media votanti"
+    },
+    "meetingStatus": {
+      "title": "Stato meeting",
+      "status": "Stato",
+      "currentStory": "Storia attuale",
+      "noStory": "Nessuna storia selezionata",
+      "participation": "Partecipazione",
+      "participants": "Partecipanti"
+    },
+    "charts": {
+      "title": "Grafici",
+      "pointsOverTime": "Story points nel tempo",
+      "cardFrequency": "Frequenza carte",
+      "consensusDistribution": "Distribuzione consenso",
+      "storyPoints": "Story points",
+      "votes": "Voti",
+      "consensus": "Consenso",
+      "noConsensus": "Nessun consenso",
+      "consensusRate": "Consenso"
+    },
+    "recentStories": {
+      "title": "Storie recenti",
+      "noStories": "Nessuna storia stimata finora"
+    },
+    "time": {
+      "justNow": "Proprio ora",
+      "minutesAgo": "{count} minuto fa | {count} minuti fa",
+      "hoursAgo": "{count} ora fa | {count} ore fa",
+      "daysAgo": "{count} giorno fa | {count} giorni fa"
+    },
+    "clearConfirm": {
+      "title": "Cancella statistiche",
+      "message": "Sei sicuro di voler eliminare tutte le statistiche salvate? Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina"
     }
   }
 }

@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Uproszczone estymacje agile",
-    "footer": "Stworzone z {heart} i Nuxt 3"
+    "footer": "Stworzone z {heart} i Nuxt 4"
+  },
+  "nav": {
+    "back": "Wstecz"
   },
   "connection": {
     "connected": "Połączono",
@@ -302,6 +305,58 @@
           "description": "Ta historyjka nie jest szacowana lub potrzebna jest przerwa."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Statystyki",
+    "subtitle": "Przegląd Twoich sesji Planning Poker",
+    "backToSession": "Wróć do sesji",
+    "noData": "Brak danych",
+    "clearStats": "Wyczyść dane",
+    "filter": {
+      "allSessions": "Wszystkie sesje"
+    },
+    "quickStats": {
+      "title": "Szybkie statystyki",
+      "totalStories": "Łącznie historyjek",
+      "averagePoints": "Śr. story points",
+      "consensusRate": "Wskaźnik konsensusu",
+      "avgVoters": "Śr. liczba głosujących"
+    },
+    "meetingStatus": {
+      "title": "Status spotkania",
+      "status": "Status",
+      "currentStory": "Aktualna historyjka",
+      "noStory": "Nie wybrano historyjki",
+      "participation": "Udział",
+      "participants": "Uczestnicy"
+    },
+    "charts": {
+      "title": "Wykresy",
+      "pointsOverTime": "Story points w czasie",
+      "cardFrequency": "Częstotliwość kart",
+      "consensusDistribution": "Rozkład konsensusu",
+      "storyPoints": "Story points",
+      "votes": "Głosy",
+      "consensus": "Konsensus",
+      "noConsensus": "Brak konsensusu",
+      "consensusRate": "Konsensus"
+    },
+    "recentStories": {
+      "title": "Ostatnie historyjki",
+      "noStories": "Jeszcze nie oszacowano żadnych historyjek"
+    },
+    "time": {
+      "justNow": "Przed chwilą",
+      "minutesAgo": "{count} minutę temu | {count} minut temu",
+      "hoursAgo": "{count} godzinę temu | {count} godzin temu",
+      "daysAgo": "{count} dzień temu | {count} dni temu"
+    },
+    "clearConfirm": {
+      "title": "Wyczyść statystyki",
+      "message": "Czy na pewno chcesz usunąć wszystkie zapisane statystyki? Tej akcji nie można cofnąć.",
+      "cancel": "Anuluj",
+      "confirm": "Usuń"
     }
   }
 }

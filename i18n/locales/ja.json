@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "アジャイル見積もりをシンプルに",
-    "footer": "{heart} と Nuxt 3 で作成"
+    "footer": "{heart} と Nuxt 4 で作成"
+  },
+  "nav": {
+    "back": "戻る"
   },
   "connection": {
     "connected": "接続済み",
@@ -302,6 +305,58 @@
           "description": "このストーリーは見積もり対象外、または休憩が必要です。"
         }
       }
+    }
+  },
+  "stats": {
+    "title": "統計",
+    "subtitle": "Planning Poker セッションの概要",
+    "backToSession": "セッションに戻る",
+    "noData": "データがありません",
+    "clearStats": "データを削除",
+    "filter": {
+      "allSessions": "すべてのセッション"
+    },
+    "quickStats": {
+      "title": "クイック統計",
+      "totalStories": "合計ストーリー数",
+      "averagePoints": "平均ストーリーポイント",
+      "consensusRate": "合意率",
+      "avgVoters": "平均投票者数"
+    },
+    "meetingStatus": {
+      "title": "ミーティング状況",
+      "status": "ステータス",
+      "currentStory": "現在のストーリー",
+      "noStory": "ストーリーが選択されていません",
+      "participation": "参加状況",
+      "participants": "参加者"
+    },
+    "charts": {
+      "title": "グラフ",
+      "pointsOverTime": "ストーリーポイントの推移",
+      "cardFrequency": "カード頻度",
+      "consensusDistribution": "合意分布",
+      "storyPoints": "ストーリーポイント",
+      "votes": "票数",
+      "consensus": "合意",
+      "noConsensus": "合意なし",
+      "consensusRate": "合意"
+    },
+    "recentStories": {
+      "title": "最近のストーリー",
+      "noStories": "まだストーリーが見積もられていません"
+    },
+    "time": {
+      "justNow": "たった今",
+      "minutesAgo": "{count} 分前 | {count} 分前",
+      "hoursAgo": "{count} 時間前 | {count} 時間前",
+      "daysAgo": "{count} 日前 | {count} 日前"
+    },
+    "clearConfirm": {
+      "title": "統計を削除",
+      "message": "保存された統計をすべて削除しますか？この操作は元に戻せません。",
+      "cancel": "キャンセル",
+      "confirm": "削除"
     }
   }
 }

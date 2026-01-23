@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Agile Schätzungen leicht gemacht",
-    "footer": "Entwickelt mit {heart} und Nuxt 3"
+    "footer": "Entwickelt mit {heart} und Nuxt 4"
+  },
+  "nav": {
+    "back": "Zurück"
   },
   "connection": {
     "connected": "Verbunden",
@@ -302,6 +305,58 @@
           "description": "Diese Story wird nicht geschätzt oder eine Pause ist nötig."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Statistiken",
+    "subtitle": "Übersicht über deine Planning Poker Sessions",
+    "backToSession": "Zurück zur Session",
+    "noData": "Keine Daten verfügbar",
+    "clearStats": "Daten löschen",
+    "filter": {
+      "allSessions": "Alle Sessions"
+    },
+    "quickStats": {
+      "title": "Schnellübersicht",
+      "totalStories": "Stories gesamt",
+      "averagePoints": "Ø Story Points",
+      "consensusRate": "Konsens-Rate",
+      "avgVoters": "Ø Teilnehmer"
+    },
+    "meetingStatus": {
+      "title": "Meeting-Status",
+      "status": "Status",
+      "currentStory": "Aktuelle Story",
+      "noStory": "Keine Story ausgewählt",
+      "participation": "Beteiligung",
+      "participants": "Teilnehmer"
+    },
+    "charts": {
+      "title": "Diagramme",
+      "pointsOverTime": "Story Points über Zeit",
+      "cardFrequency": "Kartenverteilung",
+      "consensusDistribution": "Konsens-Verteilung",
+      "storyPoints": "Story Points",
+      "votes": "Stimmen",
+      "consensus": "Konsens",
+      "noConsensus": "Kein Konsens",
+      "consensusRate": "Konsens"
+    },
+    "recentStories": {
+      "title": "Letzte Stories",
+      "noStories": "Noch keine Stories geschätzt"
+    },
+    "time": {
+      "justNow": "Gerade eben",
+      "minutesAgo": "Vor {count} Minute | Vor {count} Minuten",
+      "hoursAgo": "Vor {count} Stunde | Vor {count} Stunden",
+      "daysAgo": "Vor {count} Tag | Vor {count} Tagen"
+    },
+    "clearConfirm": {
+      "title": "Statistiken löschen",
+      "message": "Bist du sicher, dass du alle gespeicherten Statistiken löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "confirm": "Löschen"
     }
   }
 }

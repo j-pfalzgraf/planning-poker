@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Estimativa ágil facilitada",
-    "footer": "Feito com {heart} e Nuxt 3"
+    "footer": "Feito com {heart} e Nuxt 4"
+  },
+  "nav": {
+    "back": "Voltar"
   },
   "connection": {
     "connected": "Conectado",
@@ -302,6 +305,58 @@
           "description": "Esta história não será estimada ou é necessária uma pausa."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Estatísticas",
+    "subtitle": "Visão geral das suas sessões de Planning Poker",
+    "backToSession": "Voltar à sessão",
+    "noData": "Sem dados disponíveis",
+    "clearStats": "Limpar dados",
+    "filter": {
+      "allSessions": "Todas as sessões"
+    },
+    "quickStats": {
+      "title": "Resumo rápido",
+      "totalStories": "Total de histórias",
+      "averagePoints": "Média de story points",
+      "consensusRate": "Taxa de consenso",
+      "avgVoters": "Média de votantes"
+    },
+    "meetingStatus": {
+      "title": "Status da reunião",
+      "status": "Status",
+      "currentStory": "História atual",
+      "noStory": "Nenhuma história selecionada",
+      "participation": "Participação",
+      "participants": "Participantes"
+    },
+    "charts": {
+      "title": "Gráficos",
+      "pointsOverTime": "Story points ao longo do tempo",
+      "cardFrequency": "Frequência das cartas",
+      "consensusDistribution": "Distribuição de consenso",
+      "storyPoints": "Story points",
+      "votes": "Votos",
+      "consensus": "Consenso",
+      "noConsensus": "Sem consenso",
+      "consensusRate": "Consenso"
+    },
+    "recentStories": {
+      "title": "Histórias recentes",
+      "noStories": "Nenhuma história estimada ainda"
+    },
+    "time": {
+      "justNow": "Agora mesmo",
+      "minutesAgo": "{count} minuto atrás | {count} minutos atrás",
+      "hoursAgo": "{count} hora atrás | {count} horas atrás",
+      "daysAgo": "{count} dia atrás | {count} dias atrás"
+    },
+    "clearConfirm": {
+      "title": "Limpar estatísticas",
+      "message": "Tem certeza de que deseja excluir todas as estatísticas salvas? Esta ação não pode ser desfeita.",
+      "cancel": "Cancelar",
+      "confirm": "Excluir"
     }
   }
 }

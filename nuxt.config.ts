@@ -72,4 +72,9 @@ export default defineNuxtConfig({
       fallbackLocale: 'en',
     },
   },
+
+  /**
+   * Runtime Configuration
+   */
+  runtimeConfig: {},
 })

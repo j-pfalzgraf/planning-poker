@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "让敏捷估算更简单",
-    "footer": "由 {heart} 与 Nuxt 3 驱动"
+    "footer": "由 {heart} 与 Nuxt 4 驱动"
+  },
+  "nav": {
+    "back": "返回"
   },
   "connection": {
     "connected": "已连接",
@@ -302,6 +305,58 @@
           "description": "该故事不进行估算或需要休息。"
         }
       }
+    }
+  },
+  "stats": {
+    "title": "统计",
+    "subtitle": "你的 Planning Poker 会话概览",
+    "backToSession": "返回会话",
+    "noData": "暂无数据",
+    "clearStats": "清除数据",
+    "filter": {
+      "allSessions": "所有会话"
+    },
+    "quickStats": {
+      "title": "快速统计",
+      "totalStories": "故事总数",
+      "averagePoints": "平均 Story Points",
+      "consensusRate": "共识率",
+      "avgVoters": "平均投票人数"
+    },
+    "meetingStatus": {
+      "title": "会议状态",
+      "status": "状态",
+      "currentStory": "当前故事",
+      "noStory": "未选择故事",
+      "participation": "参与度",
+      "participants": "参与者"
+    },
+    "charts": {
+      "title": "图表",
+      "pointsOverTime": "Story Points 随时间变化",
+      "cardFrequency": "卡牌频率",
+      "consensusDistribution": "共识分布",
+      "storyPoints": "Story Points",
+      "votes": "票数",
+      "consensus": "共识",
+      "noConsensus": "无共识",
+      "consensusRate": "共识"
+    },
+    "recentStories": {
+      "title": "最近故事",
+      "noStories": "还没有估算过的故事"
+    },
+    "time": {
+      "justNow": "刚刚",
+      "minutesAgo": "{count} 分钟前 | {count} 分钟前",
+      "hoursAgo": "{count} 小时前 | {count} 小时前",
+      "daysAgo": "{count} 天前 | {count} 天前"
+    },
+    "clearConfirm": {
+      "title": "清除统计",
+      "message": "确定要删除所有已保存的统计数据吗？此操作无法撤销。",
+      "cancel": "取消",
+      "confirm": "删除"
     }
   }
 }

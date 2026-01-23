@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Простые оценки по Agile",
-    "footer": "Сделано с {heart} и Nuxt 3"
+    "footer": "Сделано с {heart} и Nuxt 4"
+  },
+  "nav": {
+    "back": "Назад"
   },
   "connection": {
     "connected": "Подключено",
@@ -302,6 +305,58 @@
           "description": "Эта история не оценивается или нужен перерыв."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Статистика",
+    "subtitle": "Обзор ваших сессий Planning Poker",
+    "backToSession": "Вернуться к сессии",
+    "noData": "Нет данных",
+    "clearStats": "Очистить данные",
+    "filter": {
+      "allSessions": "Все сессии"
+    },
+    "quickStats": {
+      "title": "Краткая сводка",
+      "totalStories": "Всего историй",
+      "averagePoints": "Средние story points",
+      "consensusRate": "Доля консенсуса",
+      "avgVoters": "Среднее число голосующих"
+    },
+    "meetingStatus": {
+      "title": "Статус встречи",
+      "status": "Статус",
+      "currentStory": "Текущая история",
+      "noStory": "История не выбрана",
+      "participation": "Участие",
+      "participants": "Участники"
+    },
+    "charts": {
+      "title": "Графики",
+      "pointsOverTime": "Story points по времени",
+      "cardFrequency": "Частота карт",
+      "consensusDistribution": "Распределение консенсуса",
+      "storyPoints": "Story points",
+      "votes": "Голоса",
+      "consensus": "Консенсус",
+      "noConsensus": "Без консенсуса",
+      "consensusRate": "Консенсус"
+    },
+    "recentStories": {
+      "title": "Последние истории",
+      "noStories": "Пока нет оцененных историй"
+    },
+    "time": {
+      "justNow": "Только что",
+      "minutesAgo": "{count} минуту назад | {count} минут назад",
+      "hoursAgo": "{count} час назад | {count} часов назад",
+      "daysAgo": "{count} день назад | {count} дней назад"
+    },
+    "clearConfirm": {
+      "title": "Очистить статистику",
+      "message": "Вы уверены, что хотите удалить все сохранённые статистики? Это действие нельзя отменить.",
+      "cancel": "Отмена",
+      "confirm": "Удалить"
     }
   }
 }

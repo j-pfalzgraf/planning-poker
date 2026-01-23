@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Agile Estimation Made Easy",
-    "footer": "Built with {heart} and Nuxt 3"
+    "footer": "Built with {heart} and Nuxt 4"
+  },
+  "nav": {
+    "back": "Back"
   },
   "connection": {
     "connected": "Connected",
@@ -302,6 +305,58 @@
           "description": "This story is not being estimated or a break is needed."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Statistics",
+    "subtitle": "Overview of your Planning Poker sessions",
+    "backToSession": "Back to Session",
+    "noData": "No data available",
+    "clearStats": "Clear Data",
+    "filter": {
+      "allSessions": "All Sessions"
+    },
+    "quickStats": {
+      "title": "Quick Stats",
+      "totalStories": "Total Stories",
+      "averagePoints": "Avg Story Points",
+      "consensusRate": "Consensus Rate",
+      "avgVoters": "Avg Voters"
+    },
+    "meetingStatus": {
+      "title": "Meeting Status",
+      "status": "Status",
+      "currentStory": "Current Story",
+      "noStory": "No story selected",
+      "participation": "Participation",
+      "participants": "Participants"
+    },
+    "charts": {
+      "title": "Charts",
+      "pointsOverTime": "Story Points Over Time",
+      "cardFrequency": "Card Frequency",
+      "consensusDistribution": "Consensus Distribution",
+      "storyPoints": "Story Points",
+      "votes": "Votes",
+      "consensus": "Consensus",
+      "noConsensus": "No Consensus",
+      "consensusRate": "Consensus"
+    },
+    "recentStories": {
+      "title": "Recent Stories",
+      "noStories": "No stories estimated yet"
+    },
+    "time": {
+      "justNow": "Just now",
+      "minutesAgo": "{count} minute ago | {count} minutes ago",
+      "hoursAgo": "{count} hour ago | {count} hours ago",
+      "daysAgo": "{count} day ago | {count} days ago"
+    },
+    "clearConfirm": {
+      "title": "Clear Statistics",
+      "message": "Are you sure you want to delete all saved statistics? This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete"
     }
   }
 }

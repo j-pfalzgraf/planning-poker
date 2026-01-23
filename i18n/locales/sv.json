@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Agil estimering enklare",
-    "footer": "Byggt med {heart} och Nuxt 3"
+    "footer": "Byggt med {heart} och Nuxt 4"
+  },
+  "nav": {
+    "back": "Tillbaka"
   },
   "connection": {
     "connected": "Ansluten",
@@ -302,6 +305,58 @@
           "description": "Denna story uppskattas inte eller så behövs en paus."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Statistik",
+    "subtitle": "Översikt över dina Planning Poker-sessioner",
+    "backToSession": "Tillbaka till sessionen",
+    "noData": "Inga data tillgängliga",
+    "clearStats": "Rensa data",
+    "filter": {
+      "allSessions": "Alla sessioner"
+    },
+    "quickStats": {
+      "title": "Snabbstatistik",
+      "totalStories": "Totalt antal stories",
+      "averagePoints": "Genomsnittliga story points",
+      "consensusRate": "Konsensusgrad",
+      "avgVoters": "Genomsnittligt antal röstande"
+    },
+    "meetingStatus": {
+      "title": "Mötesstatus",
+      "status": "Status",
+      "currentStory": "Aktuell story",
+      "noStory": "Ingen story vald",
+      "participation": "Deltagande",
+      "participants": "Deltagare"
+    },
+    "charts": {
+      "title": "Diagram",
+      "pointsOverTime": "Story points över tid",
+      "cardFrequency": "Kortfrekvens",
+      "consensusDistribution": "Konsensusfördelning",
+      "storyPoints": "Story points",
+      "votes": "Röster",
+      "consensus": "Konsensus",
+      "noConsensus": "Ingen konsensus",
+      "consensusRate": "Konsensus"
+    },
+    "recentStories": {
+      "title": "Senaste stories",
+      "noStories": "Inga stories uppskattade ännu"
+    },
+    "time": {
+      "justNow": "Nyss",
+      "minutesAgo": "För {count} minut sedan | För {count} minuter sedan",
+      "hoursAgo": "För {count} timme sedan | För {count} timmar sedan",
+      "daysAgo": "För {count} dag sedan | För {count} dagar sedan"
+    },
+    "clearConfirm": {
+      "title": "Rensa statistik",
+      "message": "Är du säker på att du vill radera all sparad statistik? Åtgärden kan inte ångras.",
+      "cancel": "Avbryt",
+      "confirm": "Radera"
     }
   }
 }

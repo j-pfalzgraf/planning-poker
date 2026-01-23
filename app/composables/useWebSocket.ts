@@ -51,6 +51,38 @@ interface UseWebSocketReturn {
 }
 
 /**
+ * Client-only singleton state for WebSocket
+ * Lazily initialized to prevent SSR state pollution
+ */
+interface ClientSingletonState {
+  ws: WebSocket | null
+  reconnectAttempts: number
+  reconnectTimer: ReturnType<typeof setTimeout> | null
+  pingInterval: ReturnType<typeof setInterval> | null
+  handlers: Map<ServerMessageType, Set<MessageHandler>>
+  isInitialized: boolean
+}
+
+let clientState: ClientSingletonState | null = null
+
+/**
+ * Get or create client-only singleton state
+ */
+function getClientState(): ClientSingletonState {
+  if (!clientState) {
+    clientState = {
+      ws: null,
+      reconnectAttempts: 0,
+      reconnectTimer: null,
+      pingInterval: null,
+      handlers: new Map(),
+      isInitialized: false,
+    }
+  }
+  return clientState
+}
+
+/**
  * useWebSocket Composable
  *
  * @param options - Configuration options
@@ -75,30 +107,33 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
     reconnectDelay = 1000,
   } = options
 
-  /** WebSocket instance */
-  let ws: WebSocket | null = null
+  /**
+   * Use useState for SSR-safe reactive status
+   * This ensures each SSR request gets its own status ref
+   */
+  const status = useState<ConnectionStatus>('ws-status', () => 'disconnected')
 
-  /** Reconnect attempts */
-  let reconnectAttempts = 0
+  /**
+   * SSR-safe no-op implementations
+   */
+  if (!import.meta.client) {
+    return {
+      status,
+      connect: () => {},
+      disconnect: () => {},
+      send: () => {},
+      on: () => () => {},
+      once: () => {},
+    }
+  }
 
-  /** Reconnect timer */
-  let reconnectTimer: ReturnType<typeof setTimeout> | null = null
-
-  /** Ping interval */
-  let pingInterval: ReturnType<typeof setInterval> | null = null
-
-  /** Connection status */
-  const status = ref<ConnectionStatus>('disconnected')
-
-  /** Event handler map */
-  const handlers = new Map<ServerMessageType, Set<MessageHandler>>()
+  // Client-only code below
+  const state = getClientState()
 
   /**
    * Generate WebSocket URL
    */
   function getWebSocketUrl(): string {
-    if (!import.meta.client) return ''
-
     const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:'
     return `${protocol}//${window.location.host}/_ws`
   }
@@ -107,7 +142,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
    * Call event handlers
    */
   function emitEvent(type: ServerMessageType, payload: unknown): void {
-    const typeHandlers = handlers.get(type)
+    const typeHandlers = state.handlers.get(type)
     if (typeHandlers) {
       typeHandlers.forEach(handler => handler(payload))
     }
@@ -117,28 +152,27 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
    * Establish connection
    */
   function connect(): void {
-    if (!import.meta.client) return
-    if (ws?.readyState === WebSocket.OPEN) return
+    if (state.ws?.readyState === WebSocket.OPEN) return
 
     status.value = 'connecting'
 
     try {
-      ws = new WebSocket(getWebSocketUrl())
+      state.ws = new WebSocket(getWebSocketUrl())
 
-      ws.onopen = () => {
+      state.ws.onopen = () => {
         status.value = 'connected'
-        reconnectAttempts = 0
+        state.reconnectAttempts = 0
         console.log('[WebSocket] Connected')
 
         // Start ping interval
-        pingInterval = setInterval(() => {
-          if (ws?.readyState === WebSocket.OPEN) {
+        state.pingInterval = setInterval(() => {
+          if (state.ws?.readyState === WebSocket.OPEN) {
             send('ping', {})
           }
         }, 30000)
       }
 
-      ws.onmessage = (event) => {
+      state.ws.onmessage = (event) => {
         try {
           const message = JSON.parse(event.data) as ServerMessage
           emitEvent(message.type, message.payload)
@@ -148,24 +182,24 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
         }
       }
 
-      ws.onclose = () => {
+      state.ws.onclose = () => {
         status.value = 'disconnected'
         cleanup()
         console.log('[WebSocket] Disconnected')
 
         // Auto-Reconnect
-        if (autoReconnect && reconnectAttempts < maxReconnectAttempts) {
-          reconnectAttempts++
-          const delay = reconnectDelay * Math.pow(2, reconnectAttempts - 1)
-          console.log(`[WebSocket] Reconnecting in ${delay}ms (attempt ${reconnectAttempts}/${maxReconnectAttempts})`)
+        if (autoReconnect && state.reconnectAttempts < maxReconnectAttempts) {
+          state.reconnectAttempts++
+          const delay = reconnectDelay * Math.pow(2, state.reconnectAttempts - 1)
+          console.log(`[WebSocket] Reconnecting in ${delay}ms (attempt ${state.reconnectAttempts}/${maxReconnectAttempts})`)
 
-          reconnectTimer = setTimeout(() => {
+          state.reconnectTimer = setTimeout(() => {
             connect()
           }, delay)
         }
       }
 
-      ws.onerror = (error) => {
+      state.ws.onerror = (error) => {
         status.value = 'error'
         console.error('[WebSocket] Error:', error)
       }
@@ -180,9 +214,9 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
    * Cleanup
    */
   function cleanup(): void {
-    if (pingInterval) {
-      clearInterval(pingInterval)
-      pingInterval = null
+    if (state.pingInterval) {
+      clearInterval(state.pingInterval)
+      state.pingInterval = null
     }
   }
 
@@ -190,17 +224,17 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
    * Disconnect
    */
   function disconnect(): void {
-    if (reconnectTimer) {
-      clearTimeout(reconnectTimer)
-      reconnectTimer = null
+    if (state.reconnectTimer) {
+      clearTimeout(state.reconnectTimer)
+      state.reconnectTimer = null
     }
 
     cleanup()
-    reconnectAttempts = maxReconnectAttempts // Prevents auto-reconnect
+    state.reconnectAttempts = maxReconnectAttempts // Prevents auto-reconnect
 
-    if (ws) {
-      ws.close()
-      ws = null
+    if (state.ws) {
+      state.ws.close()
+      state.ws = null
     }
 
     status.value = 'disconnected'
@@ -210,7 +244,7 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
    * Send message
    */
   function send<T>(type: ClientMessage['type'], payload: T): void {
-    if (ws?.readyState !== WebSocket.OPEN) {
+    if (state.ws?.readyState !== WebSocket.OPEN) {
       console.warn('[WebSocket] Cannot send message: not connected')
       return
     }
@@ -221,22 +255,22 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
       timestamp: Date.now(),
     }
 
-    ws.send(JSON.stringify(message))
+    state.ws.send(JSON.stringify(message))
   }
 
   /**
    * Register event handler
    */
   function on<T>(type: ServerMessageType, handler: MessageHandler<T>): () => void {
-    if (!handlers.has(type)) {
-      handlers.set(type, new Set())
+    if (!state.handlers.has(type)) {
+      state.handlers.set(type, new Set())
     }
 
-    handlers.get(type)!.add(handler as MessageHandler)
+    state.handlers.get(type)!.add(handler as MessageHandler)
 
     // Return unsubscribe function
     return () => {
-      handlers.get(type)?.delete(handler as MessageHandler)
+      state.handlers.get(type)?.delete(handler as MessageHandler)
     }
   }
 
@@ -246,21 +280,21 @@ export function useWebSocket(options: UseWebSocketOptions = {}): UseWebSocketRet
   function once<T>(type: ServerMessageType, handler: MessageHandler<T>): void {
     const wrappedHandler: MessageHandler<T> = (payload) => {
       handler(payload)
-      handlers.get(type)?.delete(wrappedHandler as MessageHandler)
+      state.handlers.get(type)?.delete(wrappedHandler as MessageHandler)
     }
 
     on(type, wrappedHandler)
   }
 
-  // Auto-connect on mount
-  if (import.meta.client && autoConnect) {
+  // Auto-connect on mount (only once globally)
+  if (autoConnect && !state.isInitialized) {
+    state.isInitialized = true
     onMounted(() => {
       connect()
     })
 
-    onUnmounted(() => {
-      disconnect()
-    })
+    // Note: We do NOT disconnect on unmount to preserve connection across page navigations
+    // The connection is managed globally and persists until the browser tab is closed
   }
 
   return {

@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Agile schatten eenvoudig",
-    "footer": "Gemaakt met {heart} en Nuxt 3"
+    "footer": "Gemaakt met {heart} en Nuxt 4"
+  },
+  "nav": {
+    "back": "Terug"
   },
   "connection": {
     "connected": "Verbonden",
@@ -302,6 +305,58 @@
           "description": "Deze story wordt niet geschat of er is een pauze nodig."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Statistieken",
+    "subtitle": "Overzicht van je Planning Poker-sessies",
+    "backToSession": "Terug naar sessie",
+    "noData": "Geen gegevens beschikbaar",
+    "clearStats": "Gegevens wissen",
+    "filter": {
+      "allSessions": "Alle sessies"
+    },
+    "quickStats": {
+      "title": "Snelle stats",
+      "totalStories": "Stories totaal",
+      "averagePoints": "Gem. story points",
+      "consensusRate": "Consensuspercentage",
+      "avgVoters": "Gem. stemmers"
+    },
+    "meetingStatus": {
+      "title": "Meetingstatus",
+      "status": "Status",
+      "currentStory": "Huidige story",
+      "noStory": "Geen story geselecteerd",
+      "participation": "Deelname",
+      "participants": "Deelnemers"
+    },
+    "charts": {
+      "title": "Grafieken",
+      "pointsOverTime": "Story points in de tijd",
+      "cardFrequency": "Kaartfrequentie",
+      "consensusDistribution": "Consensusverdeling",
+      "storyPoints": "Story points",
+      "votes": "Stemmen",
+      "consensus": "Consensus",
+      "noConsensus": "Geen consensus",
+      "consensusRate": "Consensus"
+    },
+    "recentStories": {
+      "title": "Recente stories",
+      "noStories": "Nog geen stories geschat"
+    },
+    "time": {
+      "justNow": "Zojuist",
+      "minutesAgo": "{count} minuut geleden | {count} minuten geleden",
+      "hoursAgo": "{count} uur geleden | {count} uur geleden",
+      "daysAgo": "{count} dag geleden | {count} dagen geleden"
+    },
+    "clearConfirm": {
+      "title": "Statistieken wissen",
+      "message": "Weet je zeker dat je alle opgeslagen statistieken wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+      "cancel": "Annuleren",
+      "confirm": "Verwijderen"
     }
   }
 }

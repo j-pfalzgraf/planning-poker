@@ -5,15 +5,15 @@
  * Uses WebSocket for multi-user communication.
  */
 
-import type { ISessionState, PokerValue } from '~/types'
+import type { ISession, ISessionState, PokerValue } from '~/types'
 import type {
-    ParticipantJoinedPayload,
-    ParticipantLeftPayload,
-    SessionCreatedPayload,
-    SessionErrorPayload,
-    SessionJoinedPayload,
-    SessionLeftPayload,
-    SessionUpdatedPayload,
+  ParticipantJoinedPayload,
+  ParticipantLeftPayload,
+  SessionCreatedPayload,
+  SessionErrorPayload,
+  SessionJoinedPayload,
+  SessionLeftPayload,
+  SessionUpdatedPayload,
 } from '~/types/websocket'
 
 /**
@@ -21,6 +21,14 @@ import type {
  */
 interface ExtendedSessionState extends ISessionState {
   joinCode: string | null
+}
+
+/**
+ * Check if cards were just revealed (transition from voting to revealed)
+ */
+function wasCardsRevealed(oldSession: ISession | null, newSession: ISession): boolean {
+  if (!oldSession) return false
+  return oldSession.status === 'voting' && newSession.status === 'revealed' && newSession.cardsRevealed
 }
 
 /**
@@ -41,6 +49,11 @@ export function useSession() {
   })
 
   /**
+   * Local stats composable for recording voting results
+   */
+  const { recordVotingResult } = useLocalStats()
+
+  /**
    * Reactive session state
    */
   const state = useState<ExtendedSessionState>('session', () => ({
@@ -51,6 +64,11 @@ export function useSession() {
     error: null,
     joinCode: null,
   }))
+
+  /**
+   * Flag to ensure WebSocket handlers are registered only once per browser tab
+   */
+  const handlersRegistered = useState<boolean>('session-handlers-registered', () => false)
 
   /**
    * Wait for connection if not yet connected
@@ -78,9 +96,10 @@ export function useSession() {
   }
 
   /**
-   * Register WebSocket event handlers
+   * Register WebSocket event handlers (only once per browser tab)
    */
-  if (import.meta.client) {
+  if (import.meta.client && !handlersRegistered.value) {
+    handlersRegistered.value = true
     // Session created
     on<SessionCreatedPayload>('session:created', (payload) => {
       state.value = {
@@ -108,6 +127,12 @@ export function useSession() {
     // Session updated
     on<SessionUpdatedPayload>('session:updated', (payload) => {
       if (!state.value.currentParticipant) return
+
+      // Check if cards were just revealed - record stats
+      if (wasCardsRevealed(state.value.session, payload.session) && state.value.joinCode) {
+        const votersOnly = payload.session.participants.filter(p => !p.isObserver)
+        recordVotingResult(payload.session, state.value.joinCode, votersOnly)
+      }
 
       // Get current participant from updated list
       const updatedParticipant = payload.session.participants.find(
@@ -395,6 +420,7 @@ export function useSession() {
 
   /**
    * Starts the next story (host only)
+   * Also triggers story points sync if configured
    */
   function nextStory(): void {
     if (!state.value.session || !state.value.isHost) return

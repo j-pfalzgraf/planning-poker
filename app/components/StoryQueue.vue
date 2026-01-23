@@ -205,15 +205,17 @@ function handleAddStory(): void {
       </Transition>
 
       <!-- Action Buttons -->
-      <div v-if="!showAddForm" class="flex gap-2">
-        <button
-          type="button"
-          class="btn-secondary flex-1 text-sm"
-          @click="showAddForm = true"
-        >
-          <Icon name="heroicons:plus" class="w-4 h-4 mr-1" />
-          {{ t('storyQueue.addStory') }}
-        </button>
+      <div v-if="!showAddForm" class="flex flex-col gap-2">
+        <div class="flex gap-2">
+          <button
+            type="button"
+            class="btn-secondary flex-1 text-sm"
+            @click="showAddForm = true"
+          >
+            <Icon name="heroicons:plus" class="w-4 h-4 mr-1" />
+            {{ t('storyQueue.addStory') }}
+          </button>
+        </div>
 
         <button
           v-if="hasNextStory && (status === 'revealed' || status === 'waiting')"

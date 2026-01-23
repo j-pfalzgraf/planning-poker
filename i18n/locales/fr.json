@@ -2,7 +2,10 @@
   "app": {
     "name": "Planning Poker",
     "tagline": "Estimation agile simplifiée",
-    "footer": "Créé avec {heart} et Nuxt 3"
+    "footer": "Créé avec {heart} et Nuxt 4"
+  },
+  "nav": {
+    "back": "Retour"
   },
   "connection": {
     "connected": "Connecté",
@@ -302,6 +305,58 @@
           "description": "Cette histoire n'est pas estimée ou une pause est nécessaire."
         }
       }
+    }
+  },
+  "stats": {
+    "title": "Statistiques",
+    "subtitle": "Aperçu de vos sessions Planning Poker",
+    "backToSession": "Retour à la session",
+    "noData": "Aucune donnée disponible",
+    "clearStats": "Effacer les données",
+    "filter": {
+      "allSessions": "Toutes les sessions"
+    },
+    "quickStats": {
+      "title": "Aperçu rapide",
+      "totalStories": "Stories totales",
+      "averagePoints": "Points moyens",
+      "consensusRate": "Taux de consensus",
+      "avgVoters": "Moy. de votants"
+    },
+    "meetingStatus": {
+      "title": "Statut de la réunion",
+      "status": "Statut",
+      "currentStory": "Story en cours",
+      "noStory": "Aucune story sélectionnée",
+      "participation": "Participation",
+      "participants": "Participants"
+    },
+    "charts": {
+      "title": "Graphiques",
+      "pointsOverTime": "Story points dans le temps",
+      "cardFrequency": "Fréquence des cartes",
+      "consensusDistribution": "Répartition du consensus",
+      "storyPoints": "Story points",
+      "votes": "Votes",
+      "consensus": "Consensus",
+      "noConsensus": "Pas de consensus",
+      "consensusRate": "Consensus"
+    },
+    "recentStories": {
+      "title": "Stories récentes",
+      "noStories": "Aucune story estimée pour le moment"
+    },
+    "time": {
+      "justNow": "À l'instant",
+      "minutesAgo": "Il y a {count} minute | Il y a {count} minutes",
+      "hoursAgo": "Il y a {count} heure | Il y a {count} heures",
+      "daysAgo": "Il y a {count} jour | Il y a {count} jours"
+    },
+    "clearConfirm": {
+      "title": "Effacer les statistiques",
+      "message": "Êtes‑vous sûr de vouloir supprimer toutes les statistiques enregistrées ? Cette action est irréversible.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
     }
   }
 }
