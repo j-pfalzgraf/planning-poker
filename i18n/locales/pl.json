@@ -147,6 +147,8 @@
     "hint": "Te przykłady służą jako wskazówki. Dostosuj je do konwencji i domeny swojego zespołu.",
     "close": "Zamknij",
     "openButton": "Zobacz Przykłady",
+    "detailedExamples": "Szczegółowe przykłady z kryteriami akceptacji",
+    "noContent": "Nie udało się załadować treści.",
     "tabs": {
       "examples": "Przykłady",
       "matrix": "Macierz"

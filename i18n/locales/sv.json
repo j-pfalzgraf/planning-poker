@@ -147,6 +147,8 @@
     "hint": "Dessa exempel är vägledande. Anpassa dem efter teamets konventioner och domän.",
     "close": "Stäng",
     "openButton": "Visa exempel",
+    "detailedExamples": "Detaljerade exempel med acceptanskriterier",
+    "noContent": "Innehållet kunde inte laddas.",
     "tabs": {
       "examples": "Exempel",
       "matrix": "Matris"

@@ -147,6 +147,8 @@
     "hint": "这些示例仅供参考，可根据团队约定和领域进行调整。",
     "close": "关闭",
     "openButton": "查看示例",
+    "detailedExamples": "包含验收标准的详细示例",
+    "noContent": "无法加载内容。",
     "tabs": {
       "examples": "示例",
       "matrix": "矩阵"

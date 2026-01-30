@@ -147,6 +147,8 @@
     "hint": "Ces exemples servent de guide. Adaptez-les aux conventions et au domaine de votre équipe.",
     "close": "Fermer",
     "openButton": "Voir les Exemples",
+    "detailedExamples": "Exemples détaillés avec critères d'acceptation",
+    "noContent": "Le contenu n'a pas pu être chargé.",
     "tabs": {
       "examples": "Exemples",
       "matrix": "Matrice"

@@ -147,6 +147,8 @@
     "hint": "Estos ejemplos sirven como guía. Adáptalos a las convenciones y dominio de tu equipo.",
     "close": "Cerrar",
     "openButton": "Ver Ejemplos",
+    "detailedExamples": "Ejemplos detallados con criterios de aceptación",
+    "noContent": "No se pudo cargar el contenido.",
     "tabs": {
       "examples": "Ejemplos",
       "matrix": "Matriz"

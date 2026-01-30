@@ -147,6 +147,8 @@
     "hint": "Questi esempi servono come guida. Adattali alle convenzioni e al dominio del tuo team.",
     "close": "Chiudi",
     "openButton": "Vedi Esempi",
+    "detailedExamples": "Esempi dettagliati con criteri di accettazione",
+    "noContent": "Impossibile caricare il contenuto.",
     "tabs": {
       "examples": "Esempi",
       "matrix": "Matrice"

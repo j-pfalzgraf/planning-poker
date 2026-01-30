@@ -147,6 +147,8 @@
     "hint": "These examples serve as guidance. Adapt them to your team's conventions and domain.",
     "close": "Close",
     "openButton": "View Examples",
+    "detailedExamples": "Detailed examples with acceptance criteria",
+    "noContent": "Content could not be loaded.",
     "tabs": {
       "examples": "Examples",
       "matrix": "Matrix"

@@ -147,6 +147,8 @@
     "hint": "Deze voorbeelden dienen als richtlijn. Pas ze aan aan de conventies en het domein van je team.",
     "close": "Sluiten",
     "openButton": "Bekijk Voorbeelden",
+    "detailedExamples": "Gedetailleerde voorbeelden met acceptatiecriteria",
+    "noContent": "Inhoud kon niet worden geladen.",
     "tabs": {
       "examples": "Voorbeelden",
       "matrix": "Matrix"

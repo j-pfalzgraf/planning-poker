@@ -147,6 +147,8 @@
     "hint": "Estes exemplos servem como guia. Adapte-os às convenções e ao domínio do seu time.",
     "close": "Fechar",
     "openButton": "Ver Exemplos",
+    "detailedExamples": "Exemplos detalhados com critérios de aceitação",
+    "noContent": "Não foi possível carregar o conteúdo.",
     "tabs": {
       "examples": "Exemplos",
       "matrix": "Matriz"

@@ -147,6 +147,8 @@
     "hint": "Diese Beispiele dienen als Orientierung. Passe sie an die Konventionen und Domäne deines Teams an.",
     "close": "Schließen",
     "openButton": "Beispiele anzeigen",
+    "detailedExamples": "Detaillierte Beispiele mit Akzeptanzkriterien",
+    "noContent": "Inhalt konnte nicht geladen werden.",
     "tabs": {
       "examples": "Beispiele",
       "matrix": "Matrix"
