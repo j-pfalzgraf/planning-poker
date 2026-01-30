@@ -142,7 +142,7 @@
     "subtitle": "Справочные примеры для оценки story points",
     "selectPoints": "Выберите Story Points",
     "selectPrompt": "Выберите значение story point слева, чтобы увидеть примеры.",
-    "points": "Story Points",
+    "points": "Очки истории",
     "riskLabel": "Риск",
     "hint": "Эти примеры служат ориентиром. Подстройте их под практики и домен вашей команды.",
     "close": "Закрыть",
